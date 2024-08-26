@@ -1,6 +1,8 @@
 package com.example.food.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.food.DescriptionDish;
 import com.example.food.R;
 import com.example.food.model.DishModel;
 
@@ -32,19 +35,25 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishViewHolder
         return new DishViewHolder(view);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(@NonNull DishViewHolder holder, int position) {
 
-        holder.difficultyDish.setBackground(dishList.get(position).getDifficultyDish());
-        holder.backgroundImage.setBackground(dishList.get(position).getBackgroundImage());
+        holder.difficultyDish.setBackground(dishContext.getDrawable(dishList.get(position).getDifficultyDish()));
+        holder.backgroundImage.setBackground(dishContext.getDrawable(dishList.get(position).getBackgroundImage()));
         holder.cookingTime.setText(dishList.get(position).getCookingTime());
         holder.nameDish.setText(dishList.get(position).getNameDish());
+
+        holder.itemView.setOnClickListener((View v) -> {
+            Intent intent = new Intent(dishContext, DescriptionDish.class);
+            dishContext.startActivity(intent);
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dishList.size();
     }
 
     public static final class DishViewHolder extends RecyclerView.ViewHolder{
@@ -55,10 +64,10 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishViewHolder
         public DishViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            backgroundImage = itemView.findViewById(R.id.backgroundImage);
-            difficultyDish = itemView.findViewById(R.id.difficultyDish);
-            nameDish = itemView.findViewById(R.id.nameDish);
-            cookingTime = itemView.findViewById(R.id.cookingTime);
+            backgroundImage = itemView.findViewById(R.id.dishView);
+            difficultyDish = itemView.findViewById(R.id.dish_lvl);
+            nameDish = itemView.findViewById(R.id.name_dish);
+            cookingTime = itemView.findViewById(R.id.dish_time);
 
         }
 

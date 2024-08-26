@@ -1,5 +1,6 @@
 package com.example.food.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -7,14 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.food.MainActivity;
+import com.example.food.DishActivity;
 import com.example.food.R;
 import com.example.food.model.CategoryModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -36,7 +39,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.image_panel.setBackground(categoryList.get(position).getBackground());
         holder.name_category.setText(categoryList.get(position).getName());
 
@@ -45,7 +48,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(categoryList.get(position).getDishList() == null){
+                    Toast.makeText(categoryContext, "Нет блюд", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(categoryContext, DishActivity.class);
+                    intent.putExtra("dishList", (Serializable) categoryList.get(position).getDishList());
+                    categoryContext.startActivity(intent);
+                }
             }
         });
     }
