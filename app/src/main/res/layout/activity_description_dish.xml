@@ -39,6 +39,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/menu_button"
             tools:ignore="TouchTargetSizeCheck" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -113,21 +114,24 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/backImageDish"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="235dp"
+                android:scaleType="centerCrop"
                 android:background="@drawable/view_dish_global" />
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="110dp"
-                android:layout_height="30dp"
+                android:id="@+id/categoryDish"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/dish_category_first" />
+                android:background="@drawable/dish_category_first" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/nameDish"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="14dp"
                 android:fontFamily="@font/inter_semibold"
@@ -141,16 +145,16 @@
                 android:layout_marginBottom="10dp">
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/starDish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/star_4" />
+                    android:background="@drawable/star_3_5" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/datePostDish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="14dp"
@@ -164,6 +168,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:id="@+id/descDish"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="14dp"
@@ -202,7 +207,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/descAuthorDish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="110dp"
@@ -214,10 +219,10 @@
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/authorPostDish" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/authorPostDish"
                     android:layout_width="157dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -238,7 +243,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/kitchenDish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -264,7 +269,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/cookingTimeDish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -287,27 +292,14 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/inter"
-                    android:text="+ - - - -"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                    app:layout_constraintTop_toBottomOf="@+id/kitchenDish" />
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="143dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
                     android:fontFamily="@font/inter"
@@ -317,7 +309,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
                 <TextView
                     android:id="@+id/textView10"
@@ -326,14 +318,14 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="25dp"
                     android:fontFamily="@font/inter_semibold"
-                    android:text="TextView"
+                    android:text="Острота"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                    app:layout_constraintTop_toBottomOf="@+id/cookingTimeDish" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/timeOnKitchen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -358,18 +350,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/inter"
-                    android:text="+ + + + -"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/textView14"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-                <TextView
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -378,8 +358,27 @@
                     android:text="Сложность"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/textView11"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    app:layout_constraintStart_toStartOf="@+id/timeOnKitchen"
+                    app:layout_constraintTop_toBottomOf="@+id/timeOnKitchen" />
+
+                <ImageView
+                    android:id="@+id/spicyDish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10"
+                    android:background="@drawable/pepper_1" />
+
+                <ImageView
+                    android:id="@+id/hardLvl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="@+id/textView14"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14"
+                    android:background="@drawable/lvl_4" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

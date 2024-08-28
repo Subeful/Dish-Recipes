@@ -46,8 +46,29 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishViewHolder
 
         holder.itemView.setOnClickListener((View v) -> {
             Intent intent = new Intent(dishContext, DescriptionDish.class);
+
+            DishModel dishModel = dishList.get(position);
+
+            intent.putExtra("nameDish", dishModel.getNameDish());
+            intent.putExtra("categoryDish", dishModel.getCategoryDish());
+            intent.putExtra("cookingTime", dishModel.getCookingTime());
+            intent.putExtra("backImage", dishModel.getBackgroundImage());
+            intent.putExtra("hardLvl", dishModel.getDifficultyDish());
+            intent.putExtra("timeOnKitchen", dishModel.getTimeOnKitchen());
+
+            intent.putExtra("dataForPost", dishModel.getDateForPost());
+            intent.putExtra("descDish", dishModel.getDescriptionDish());
+
+            intent.putExtra("authorPost", dishModel.getAuthorPostDish());
+            intent.putExtra("descAuthorPost", dishModel.getDescriptionAuthorPost());
+
+            intent.putExtra("KitchenDish", dishModel.getKitchenDish());
+            intent.putExtra("starDish", dishModel.getStarDish());
+            intent.putExtra("spacyDish", dishModel.getSpicyDish());
+
             dishContext.startActivity(intent);
         });
+
 
     }
 

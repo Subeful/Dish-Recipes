@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             categoryList.add(new CategoryModel(1, getDrawable(R.drawable.category_first), "Первые блюда",
                     SetterInDish.setFirstDish()));
-
             categoryList.add(new CategoryModel(2, getDrawable(R.drawable.category_second), "Вторые блюда",
                     SetterInDish.setSecondDish()));
             categoryList.add(new CategoryModel(3, getDrawable(R.drawable.category_salat), "Салаты",

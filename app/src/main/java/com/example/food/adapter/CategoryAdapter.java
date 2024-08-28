@@ -48,14 +48,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(categoryList.get(position).getDishList() == null){
-                    Toast.makeText(categoryContext, "Нет блюд", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Intent intent = new Intent(categoryContext, DishActivity.class);
+                Intent intent = new Intent(categoryContext, DishActivity.class);
+                if (!categoryList.get(position).getDishList().isEmpty()){
                     intent.putExtra("dishList", (Serializable) categoryList.get(position).getDishList());
                     categoryContext.startActivity(intent);
-                }
+                }else Toast.makeText(categoryContext, "Нет блюд", Toast.LENGTH_SHORT).show();
             }
         });
     }
