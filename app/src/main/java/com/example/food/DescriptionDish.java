@@ -1,6 +1,8 @@
 package com.example.food;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -17,7 +19,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.food.model.DishModel;
+import com.example.food.Help.BasketCloud;
 
 public class DescriptionDish extends AppCompatActivity {
 
@@ -25,9 +27,10 @@ public class DescriptionDish extends AppCompatActivity {
     TextView nameDish, datePostDish, descDish, authorPostDish, descAuthorDish, kitchenDish,
         cookingTimeDish, timeOnKitchen;
 
+    String nameDishes;
     String fullDescription;
 
-    DishModel dishModel;
+    Context context = DescriptionDish.this;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -49,6 +52,17 @@ public class DescriptionDish extends AppCompatActivity {
         }catch (Exception e){
             Toast.makeText(this, "error in UI", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void goBasket(View v){
+        try {
+            Intent intent = new Intent(context, Basket.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(context, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+
+    public void inBasket(View v){
+        BasketCloud.dishInBasketList.add(nameDishes);
     }
 
     private Spanned getShortenedText(String text, int maxLines) {
@@ -113,6 +127,7 @@ public class DescriptionDish extends AppCompatActivity {
         hardLvl.setBackground(getDrawable(getIntent().getIntExtra("hardLvl", 0)));
 
         nameDish.setText(getIntent().getStringExtra("nameDish"));
+        nameDishes = getIntent().getStringExtra("nameDish");
         datePostDish.setText(getIntent().getStringExtra("dataForPost"));
         descDish.setText(getShortenedText(fullDescription, 2));
         authorPostDish.setText(getIntent().getStringExtra("authorPost"));

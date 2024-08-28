@@ -9,8 +9,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/viewsis"
         android:layout_width="0dp"
+        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/name_dish"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +79,7 @@
         android:layout_height="17dp"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/lvl_4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
