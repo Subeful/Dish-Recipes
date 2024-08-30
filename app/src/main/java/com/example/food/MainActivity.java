@@ -19,9 +19,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.food.Help.CollectionCloud;
 import com.example.food.adapter.CategoryAdapter;
 import com.example.food.model.CategoryModel;
 import com.example.food.Help.SetterInDish;
+import com.example.food.model.DishModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }catch (Exception e){Toast.makeText(this, "error get text", Toast.LENGTH_SHORT).show();}
-
-
         clearCategorySearch.setOnClickListener(view -> {
             if(getCategorySearch.getText().toString().length() < 1){}
             else {
@@ -100,6 +100,19 @@ public class MainActivity extends AppCompatActivity {
         try {
             Intent intent = new Intent(this, Basket.class);
             startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+    public void goGlobal(View v){
+        try {
+            Intent intent = new Intent(this, Global.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+    public void goSearch(View v){
+        try {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
 
@@ -137,28 +150,31 @@ public class MainActivity extends AppCompatActivity {
         categoryListNow.clear();
         categoryListNow.add(model);
     }
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void setCategoryListFull(){
         try {
-            categoryListFull.add(new CategoryModel(1, getDrawable(R.drawable.category_first), "Первые блюда",
-                    SetterInDish.setFirstDish()));
-            categoryListFull.add(new CategoryModel(2, getDrawable(R.drawable.category_second), "Вторые блюда",
-                    SetterInDish.setSecondDish()));
-            categoryListFull.add(new CategoryModel(3, getDrawable(R.drawable.category_salat), "Салаты",
-                    SetterInDish.setSaladDish()));
-            categoryListFull.add(new CategoryModel(4, getDrawable(R.drawable.category_snacks), "Закуски",
-                    SetterInDish.setSnackDish()));
-            categoryListFull.add(new CategoryModel(5, getDrawable(R.drawable.category_cake), "Выпечка",
-                    SetterInDish.setBakeryDish()));
-            categoryListFull.add(new CategoryModel(6, getDrawable(R.drawable.category_sous), "Соусы и маринады",
-                    SetterInDish.setSouseDish()));
-            categoryListFull.add(new CategoryModel(7, getDrawable(R.drawable.category_zacuski), "Заготовки",
-                    SetterInDish.setPrepareDish()));
-            categoryListFull.add(new CategoryModel(8, getDrawable(R.drawable.category_drinks), "Напитки",
-                    SetterInDish.setDrinksDish()));
-            categoryListFull.add(new CategoryModel(9, getDrawable(R.drawable.category_desert), "Десерты",
-                    SetterInDish.setDessertDish()));
-            categoryListFull.add(new CategoryModel(10, getDrawable(R.drawable.category_garnir), "Гарниры",
-                    SetterInDish.setGarnishDish()));
+            if(CollectionCloud.commonDishList.size() != 14){
+                categoryListFull.add(new CategoryModel(1, getDrawable(R.drawable.category_first), "Первые блюда",
+                        SetterInDish.setFirstDish()));
+                categoryListFull.add(new CategoryModel(2, getDrawable(R.drawable.category_second), "Вторые блюда",
+                        SetterInDish.setSecondDish()));
+                categoryListFull.add(new CategoryModel(3, getDrawable(R.drawable.category_salat), "Салаты",
+                        SetterInDish.setSaladDish()));
+                categoryListFull.add(new CategoryModel(4, getDrawable(R.drawable.category_snacks), "Закуски",
+                        SetterInDish.setSnackDish()));
+                categoryListFull.add(new CategoryModel(5, getDrawable(R.drawable.category_cake), "Выпечка",
+                        SetterInDish.setBakeryDish()));
+                categoryListFull.add(new CategoryModel(6, getDrawable(R.drawable.category_sous), "Соусы и маринады",
+                        SetterInDish.setSouseDish()));
+                categoryListFull.add(new CategoryModel(7, getDrawable(R.drawable.category_zacuski), "Заготовки",
+                        SetterInDish.setPrepareDish()));
+                categoryListFull.add(new CategoryModel(8, getDrawable(R.drawable.category_drinks), "Напитки",
+                        SetterInDish.setDrinksDish()));
+                categoryListFull.add(new CategoryModel(9, getDrawable(R.drawable.category_desert), "Десерты",
+                        SetterInDish.setDessertDish()));
+                categoryListFull.add(new CategoryModel(10, getDrawable(R.drawable.category_garnir), "Гарниры",
+                        SetterInDish.setGarnishDish()));
+            }
         }catch (Exception e){
             Toast.makeText(this, "set", Toast.LENGTH_SHORT).show();
         }

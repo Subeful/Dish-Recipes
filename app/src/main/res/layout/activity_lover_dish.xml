@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:background="@color/main_dark"
     android:layout_height="match_parent"
-    tools:context=".Basket">
+    tools:context=".LoverDish">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout9"
+        android:id="@+id/constraintLayout119"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:background="@drawable/up_panel_new"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="20dp"
@@ -28,7 +28,7 @@
             app:srcCompat="@drawable/avatarka" />
 
         <ImageButton
-            android:id="@+id/imageButton9"
+            android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -39,17 +39,23 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/menu_button"
             tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="Избранное"
+            android:textColor="#C1BEBE"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.511" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
-
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout91"
+        android:id="@+id/constraintLayout21"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:background="@drawable/dw_panel_new"
@@ -63,8 +69,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="13dp"
             android:onClick="goGlobal"
+            android:layout_marginTop="13dp"
             android:layout_weight="0"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
@@ -96,10 +102,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_weight="0"
-            android:onClick="goBasket"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
             android:scaleType="fitXY"
+            android:onClick="goBasket"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -138,15 +144,38 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ListView
-        android:id="@+id/basketList"
+
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout91"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout21"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout9" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout119"
+        tools:ignore="MissingConstraints">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/loverDishRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout21"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="update"
+            android:src="@drawable/update_love_2"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="30dp"
+            android:background="@android:color/transparent"
+            />
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

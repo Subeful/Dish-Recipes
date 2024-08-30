@@ -12,7 +12,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="3sp"
         android:layout_weight="1"
-        android:background="@drawable/category_1"
+        android:background="@drawable/category_cake"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -44,6 +45,9 @@ public class DishActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().setStatusBarColor(getResources().getColor(android.R.color.transparent));
 
         dishListView = findViewById(R.id.dishColumn);
         getDishSearch = findViewById(R.id.getDishSearch);
@@ -96,6 +100,18 @@ public class DishActivity extends AppCompatActivity {
             startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
+    public void goGlobal(View v){
+        try {
+            Intent intent = new Intent(this, Global.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+    public void goSearch(View v){
+        try {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
     private void setDishListFull(){
         try {
             List<DishModel> list = (List<DishModel>) getIntent().getSerializableExtra("dishList");
@@ -133,6 +149,20 @@ public class DishActivity extends AppCompatActivity {
             dishListView.setAdapter(dishAdapter);
         } catch (Exception e) {
             Toast.makeText(this, "error in recycler", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
 

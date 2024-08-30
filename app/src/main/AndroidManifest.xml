@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Food"
         tools:targetApi="31">
         <activity
+            android:name=".LoverDish"
+            android:exported="false" />
+        <activity
+            android:name=".Global"
+            android:exported="false" />
+        <activity
             android:name=".Basket"
             android:exported="false" />
         <activity

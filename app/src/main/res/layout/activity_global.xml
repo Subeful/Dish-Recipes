@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_dark"
+    tools:context=".Global">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout5"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@drawable/up_panel_new"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView55"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/avatarka" />
+
+        <ImageButton
+            android:id="@+id/imageButton55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/menu_button"
+            tools:ignore="TouchTargetSizeCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/LLayout25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="15dp"
+                android:text="Личное"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/inter_semibold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="13dp"
+                android:contentDescription="@string/app_name"
+                android:orientation="horizontal"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/add_recipe_panel" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:onClick="goLover"
+                        android:layout_marginEnd="15dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/like_panel" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/my_recipe_panel" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/time_ago" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="15sp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Актуальное"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="13dp"
+                android:contentDescription="@string/app_name"
+                android:orientation="horizontal"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/jam_item" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/caviar_item" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/compotes_item" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/prepare_item" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/shashlik_item" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:background="@android:color/transparent"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/cucumber_item" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView515"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="15sp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Новые рецепты"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lastsDishRecycle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp">
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:layout_marginTop="30dp"
+                android:text="От редакции"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/inter_semibold"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lastsStatesRecycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <ImageButton
+                android:layout_width="328dp"
+                android:layout_height="93dp"
+                android:layout_gravity="center"
+
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@drawable/add_new_recipe" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LLayout25"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@drawable/dw_panel_new"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton115"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="13dp"
+            android:layout_weight="0"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:onClick="goGlobal"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/global_logo"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/imageButton105"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:onClick="goSearch"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton35"
+            app:layout_constraintStart_toEndOf="@+id/imageButton115"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/search_logo"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/imageButton35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="0"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:onClick="goBasket"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/basket_logo"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/imageButton75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton85"
+            app:layout_constraintStart_toEndOf="@+id/imageButton35"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/season_logo"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/imageButton85"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="0"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/setting_logo"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

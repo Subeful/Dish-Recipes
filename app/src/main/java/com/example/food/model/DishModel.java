@@ -3,6 +3,8 @@ package com.example.food.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.food.R;
+
 import java.io.Serializable;
 
 public class DishModel implements Serializable {
@@ -24,13 +26,17 @@ public class DishModel implements Serializable {
     int starDish;
     int spicyDish;
 
-//    public DishModel(int id, String nameDish, String cookingTime, int backgroundImage, int difficultyDish) {
-//        this.idDish = id;
-//        this.nameDish = nameDish;
-//        this.cookingTime = cookingTime;
-//        this.backgroundImage = backgroundImage;
-//        this.difficultyDish = difficultyDish;
-//    }
+    public int getIsLover() {
+        return isLover;
+    }
+
+    public void setIsLover(int isLover) {
+        this.isLover = isLover;
+    }
+
+    int isLover = R.drawable.in_love_1;
+
+    int flagOnLove;
 
     public DishModel(int idDish, String nameDish, int categoryDish, String cookingTime, int backgroundImage,
                      int difficultyDish, String dateForPost, String descriptionDish, String authorPostDish,
@@ -49,6 +55,27 @@ public class DishModel implements Serializable {
         this.timeOnKitchen = timeOnKitchen;
         this.starDish = starDish;
         this.spicyDish = spicyDish;
+    }
+
+    public DishModel(int idDish, String nameDish, int categoryDish, String cookingTime, int backgroundImage,
+                     int difficultyDish, String dateForPost, String descriptionDish, String authorPostDish,
+                     String descriptionAuthorPost, String kitchenDish, String timeOnKitchen, int starDish,
+                     int spicyDish, int isLover) {
+        this.idDish = idDish;
+        this.nameDish = nameDish;
+        this.categoryDish = categoryDish;
+        this.cookingTime = cookingTime;
+        this.backgroundImage = backgroundImage;
+        this.difficultyDish = difficultyDish;
+        this.dateForPost = dateForPost;
+        this.descriptionDish = descriptionDish;
+        this.authorPostDish = authorPostDish;
+        this.descriptionAuthorPost = descriptionAuthorPost;
+        KitchenDish = kitchenDish;
+        this.timeOnKitchen = timeOnKitchen;
+        this.starDish = starDish;
+        this.spicyDish = spicyDish;
+        this.isLover = isLover;
     }
 
     public int getCategoryDish() {
@@ -135,6 +162,10 @@ public class DishModel implements Serializable {
     public void setDifficultyDish(int difficultyDish) {
         this.difficultyDish = difficultyDish;
     }
-
-
+    public int getFlagOnLove() {
+        return flagOnLove;
+    }
+    public void setFlagOnLove(int flagOnLove) {
+        this.flagOnLove = flagOnLove;
+    }
 }
