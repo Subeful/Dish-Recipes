@@ -135,6 +135,13 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
+    public void goSetting(View v){
+        try {
+            Intent intent = new Intent(this, Setting.class);
+            startActivity(intent);
+            finish();
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
 
     private void setCategoryListNow(CategoryModel model){
         categoryListNow.clear();
