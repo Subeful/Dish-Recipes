@@ -16,14 +16,17 @@ import com.example.food.DescriptionDish;
 import com.example.food.R;
 import com.example.food.model.DishModel;
 
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class DishLoveAdapter extends RecyclerView.Adapter<DishLoveAdapter.DishLoveVieHolder>{
     Context dishContext;
-    List<DishModel> dishList;
+    LinkedList<DishModel> dishList;
 
-    public DishLoveAdapter(List<DishModel> dishList, Context dishContext) {
-        this.dishList = dishList;
+    public DishLoveAdapter(LinkedList<DishModel> dishList, Context dishContext) {
+        this.dishList =  dishList;
         this.dishContext = dishContext;
     }
 

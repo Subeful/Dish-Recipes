@@ -18,15 +18,17 @@ import com.example.food.R;
 import com.example.food.model.CategoryModel;
 
 import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
 
     Context categoryContext;
-    List<CategoryModel> categoryList;
+    LinkedList<CategoryModel> categoryList;
 
-    public CategoryAdapter(Context categoryContext, List<CategoryModel> categoryList) {
+    public CategoryAdapter(Context categoryContext, LinkedList<CategoryModel> categoryList) {
         this.categoryContext = categoryContext;
         this.categoryList = categoryList;
     }

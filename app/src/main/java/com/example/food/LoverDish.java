@@ -20,16 +20,17 @@ import com.example.food.adapter.DishAdapter;
 import com.example.food.adapter.DishLoveAdapter;
 import com.example.food.model.DishModel;
 
+import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class LoverDish extends AppCompatActivity {
 
     RecyclerView loverDishRecycler;
     DishLoveAdapter dishAdapter;
     GridLayoutManager layoutManagers;
-    static List<DishModel> loverDishList =  CollectionCloud.loverDishList;
-
     Context context;
     int flagThread = 1;
 
@@ -49,7 +50,7 @@ public class LoverDish extends AppCompatActivity {
         context = LoverDish.this;
         try {
             loverDishRecycler = findViewById(R.id.loverDishRecycler);
-            setApplicationRecycle(loverDishList);
+            setApplicationRecycle(CollectionCloud.loverDishList);
 
         }catch (Exception e){Toast.makeText(this, "error recycler", Toast.LENGTH_SHORT).show();}
 
@@ -58,7 +59,7 @@ public class LoverDish extends AppCompatActivity {
         }catch (Exception e){Toast.makeText(this, "error update", Toast.LENGTH_SHORT).show();}
     }
 
-    public void setApplicationRecycle(List<DishModel> listApp) {
+    public void setApplicationRecycle(LinkedList<DishModel> listApp) {
         try {
             layoutManagers = new GridLayoutManager(this, 1);
             loverDishRecycler.setLayoutManager(layoutManagers);

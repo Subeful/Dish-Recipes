@@ -2,15 +2,18 @@ package com.example.food.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.food.DescriptionDish;
 import com.example.food.R;
 import com.example.food.model.DishModel;
 
@@ -39,6 +42,12 @@ public class LastDishAdapter extends RecyclerView.Adapter<LastDishAdapter.LastDi
     public void onBindViewHolder(@NonNull LastDishViewHolder holder, int position) {
         holder.lastDishName.setText(lastDishList.get(position).getNameDish());
         holder.lastsDishView.setBackground(context.getDrawable(lastDishList.get(position).getBackgroundImage()));
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, DescriptionDish.class);
+            intent.putExtra("name", lastDishList.get(position).getNameDish());
+            context.startActivity(intent);
+        });
     }
 
     @Override

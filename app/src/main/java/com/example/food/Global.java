@@ -1,13 +1,13 @@
 package com.example.food;
 
-import static com.example.food.R.id.main;
+import static com.example.food.Help.CollectionCloud.commonDishList;
+import static com.example.food.Help.CollectionCloud.lastDishList;
+import static com.example.food.Help.CollectionCloud.statesList;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,19 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food.Help.CollectionCloud;
-import com.example.food.Help.SetterInDish;
-import com.example.food.adapter.DishAdapter;
 import com.example.food.adapter.LastDishAdapter;
 import com.example.food.adapter.LastStatesAdapter;
 import com.example.food.model.DishModel;
 import com.example.food.model.StatesModel;
 
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,10 +34,6 @@ public class Global extends AppCompatActivity {
     LastDishAdapter lastDishAdapter;
     LastStatesAdapter statesAdapter;
 
-    LinkedList<DishModel> lastDishList = CollectionCloud.lastDishList;
-    List<StatesModel> statesList = CollectionCloud.statesList;
-
-    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,19 +50,33 @@ public class Global extends AppCompatActivity {
 
         try {
             lastsDishRecycle1 =  findViewById(R.id.lastsDishRecycle1);
-            lastDishList.addAll(SetterInDish.setFirstDish());
+            setLastDishList();
             setApplicationRecycle1(lastDishList);
-        }catch (Exception e){Toast.makeText(this, "recycle 1", Toast.LENGTH_SHORT).show();}
+        }catch (Exception e){Toast.makeText(this, "Error: full last dish", Toast.LENGTH_SHORT).show();}
 
         try {
             StatesRecycle =  findViewById(R.id.lastsStatesRecycle);
+            setStatesList();
+            setApplicationRecycle2(statesList);
+        }catch (Exception e){Toast.makeText(this, "Error: full states", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void setLastDishList(){
+        LinkedList<DishModel> listNow = new LinkedList<>(commonDishList);
+        lastDishList.clear();
+        for(int i = 0; i<3; i++){
+            lastDishList.add(listNow.removeLast());
+        }
+    }
+    private void setStatesList(){
+        if(CollectionCloud.flagStatesList == 0){
             statesList.add(new StatesModel(R.drawable.states_towel, "Как красиво и компактно сложить кухонные полотенца"));
             statesList.add(new StatesModel(R.drawable.states_top_9_dish, "9 оригинальных рецептов от читателя Food Recipe"));
             statesList.add(new StatesModel(R.drawable.states_kvas, "Можно ли опьянеть от кваса"));
-            setApplicationRecycle2(statesList);
-        }catch (Exception e){Toast.makeText(this, "recycle 1", Toast.LENGTH_SHORT).show();}
-
+            CollectionCloud.flagStatesList = 1;
+        }
     }
+
     private void setApplicationRecycle1(LinkedList<DishModel> listApp) {
         try {
             LinearLayoutManager layoutManagers = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -78,7 +84,7 @@ public class Global extends AppCompatActivity {
             lastDishAdapter = new LastDishAdapter(listApp, this);
             lastsDishRecycle1.setAdapter(lastDishAdapter);
         } catch (Exception e) {
-            Toast.makeText(this, "error in recycler", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error: lastDish Recycler", Toast.LENGTH_SHORT).show();
         }
     }
     private void setApplicationRecycle2(List<StatesModel> listApp) {
@@ -88,11 +94,9 @@ public class Global extends AppCompatActivity {
             statesAdapter = new LastStatesAdapter(listApp, this);
             StatesRecycle.setAdapter(statesAdapter);
         } catch (Exception e) {
-            Toast.makeText(this, "error in recycler", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error: states Recycler", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 
     public void goBasket(View v){
         try {
@@ -113,7 +117,6 @@ public class Global extends AppCompatActivity {
             startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
-
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
