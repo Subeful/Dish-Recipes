@@ -21,14 +21,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.food.Help.BasketCloud;
 import com.example.food.Help.CollectionCloud;
 import com.example.food.model.DishModel;
 
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-
+@SuppressLint("UseCompatLoadingForDrawables")
 public class DescriptionDish extends AppCompatActivity {
 
     ImageView backImageDish, categoryDish, starDish, spicyDish, hardLvl;
@@ -38,8 +35,6 @@ public class DescriptionDish extends AppCompatActivity {
 
     String name;
     DishModel dishModel;
-
-    static int lastNotLoveInd = 183;
 
     Context context = DescriptionDish.this;
 
@@ -62,52 +57,60 @@ public class DescriptionDish extends AppCompatActivity {
         try {
             name = getIntent().getStringExtra("name");
             dishModel = findDishModel(CollectionCloud.commonDishList);
-            if(dishModel == null) throw new Exception();
+            if(dishModel == null) Toast.makeText(this, "Error: dish is null", Toast.LENGTH_SHORT).show();
+
             findUI();
             setUI();
+
         }catch (Exception e){
-            Toast.makeText(this, "error in UI", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error: full Description Dish", Toast.LENGTH_SHORT).show();
         }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     public void inLove(View v){
+        int x = 0;
         try {
-            int x = 0;
 
             if(dishModel.getFlagOnLove() == 0){
-                v.setBackground(getDrawable(R.drawable.in_love_2));
-                dishModel.setFlagOnLove(1);
-                dishModel.setIdDish(R.drawable.in_love_2);
 
-                for(DishModel model: CollectionCloud.loverDishList){
-                    if (model.getNameDish().equals(dishModel.getNameDish())) {
-                        x = 1;
-                        break;
-                    }
-                }
-                if(x == 0)
-                    CollectionCloud.loverDishList.add(dishModel);
-
+                isInLove(v, x);
 
             }else if(dishModel.getFlagOnLove() == 1){
-                v.setBackground(getDrawable(R.drawable.in_love_1));
-                dishModel.setFlagOnLove(0);
-                dishModel.setIsLover(R.drawable.in_love_2);
 
-                CollectionCloud.loverDishList.removeIf(model -> model.getNameDish().equals(dishModel.getNameDish()));
-                for(int i = 0; i < CollectionCloud.loverDishList.size(); i++){
-                    if(CollectionCloud.loverDishList.get(i).getNameDish().equals(name)){
-                        lastNotLoveInd = i;
-                        CollectionCloud.loverDishList.remove(CollectionCloud.loverDishList.get(i));
-                    }
-                }
+                isNotInLove(v, x);
+
             }
-        }catch (Exception e){
-            Toast.makeText(context, "error love", Toast.LENGTH_SHORT).show();
-        }
+        }catch (Exception e){Toast.makeText(context, "Error: full 'in live'", Toast.LENGTH_SHORT).show();}
 
     }
+
+    private void isInLove(View v, int x){
+
+        v.setBackground(getDrawable(R.drawable.in_love_2));
+        dishModel.setFlagOnLove(1);
+        dishModel.setIsLover(R.drawable.in_love_2);
+
+        for(DishModel model: CollectionCloud.loverDishList){
+            if (model.getNameDish().equals(dishModel.getNameDish())) {
+                x = 1;
+                break;
+            }
+        }
+        if(x == 0)
+            CollectionCloud.loverDishList.add(dishModel);
+    }
+
+    private void isNotInLove(View v, int x){
+
+        v.setBackground(getDrawable(R.drawable.in_love_1));
+        dishModel.setFlagOnLove(0);
+        dishModel.setIsLover(R.drawable.in_love_1);
+
+        CollectionCloud.loverDishList.removeIf(model -> model.getNameDish().equals(dishModel.getNameDish()));
+    }
+
+
     public void goBasket(View v){
         try {
             Intent intent = new Intent(context, Basket.class);
@@ -126,34 +129,30 @@ public class DescriptionDish extends AppCompatActivity {
             startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
+
     public void inBasket(View v){
-        BasketCloud.dishInBasketList.add(dishModel.getNameDish());
+        CollectionCloud.BasketList.add(dishModel.getNameDish());
     }
 
     private Spanned getShortenedText(String text, int maxLines) {
         String[] lines = text.split("\\. ");
         StringBuilder shortenedText = new StringBuilder();
 
-        // Добавляем первые maxLines строк
         for (int i = 0; i < maxLines; i++) {
             if (i < lines.length) {
                 shortenedText.append(lines[i]).append(". ");
             }
         }
-        // Добавляем троеточие, если текст был сокращен
         if (lines.length > maxLines) {
             shortenedText.append(" Дальше");
         }
 
-        // Создаем SpannableStringBuilder для создания ссылки "Читать далее"
         SpannableStringBuilder builder = new SpannableStringBuilder(shortenedText);
 
-        // Добавляем ссылку "Читать далее" в конце сокращенного текста
         if (lines.length > maxLines) {
             ClickableSpan clickableSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View widget) {
-                    // Обработка клика, например, отображаем весь текст
                     descDish.setText(text);
                 }
             };
@@ -201,14 +200,18 @@ public class DescriptionDish extends AppCompatActivity {
         descDish.setText(getShortenedText(dishModel.getDescriptionDish(), 2));
         descAuthorDish.setText(dishModel.getDescriptionAuthorPost());
 
+        ifInLover();
 
+
+    }
+    private void ifInLover(){
         for(DishModel model: CollectionCloud.loverDishList){
             if(model.getNameDish().equals(dishModel.getNameDish())){
                 in_love.setBackground(getDrawable(R.drawable.in_love_2));
             }
         }
-
     }
+
     private DishModel findDishModel(Set<DishModel> dishList){
         DishModel dishmodel = null;
         for(DishModel model: dishList){

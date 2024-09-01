@@ -23,6 +23,7 @@ public class CollectionCloud{
 
     public static LinkedList<DishModel> loverDishList = new LinkedList<>();
 
+    public static HashSet<String> BasketList = new LinkedHashSet<>();
 
     public static LinkedList<DishModel> lastDishList = new LinkedList<>();
 

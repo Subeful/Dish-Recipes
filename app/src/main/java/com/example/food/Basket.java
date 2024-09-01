@@ -15,7 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.food.Help.BasketCloud;
+import com.example.food.Help.CollectionCloud;
 
 public class Basket extends AppCompatActivity {
 
@@ -32,11 +32,12 @@ public class Basket extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         getWindow().setStatusBarColor(getResources().getColor(android.R.color.transparent));
+        try {
+            ListView basketList = findViewById(R.id.basketList);
+            basketList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                    CollectionCloud.BasketList.toArray()));
 
-
-        ListView basketList = findViewById(R.id.basketList);
-        basketList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, BasketCloud.dishInBasketList.toArray()));
-
+        }catch (Exception e){Toast.makeText(this, "Error: full basket", Toast.LENGTH_SHORT).show();}
     }
 
     public void goBasket(View v){}
@@ -52,6 +53,8 @@ public class Basket extends AppCompatActivity {
             startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
+
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

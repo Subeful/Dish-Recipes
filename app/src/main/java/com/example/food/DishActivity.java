@@ -54,14 +54,12 @@ public class DishActivity extends AppCompatActivity {
         clearDishSearch = findViewById(R.id.clearDishSearch);
 
         try {
+
             setDishListFull();
             dishListNow.addAll(dishListFull);
-
             setApplicationRecycle(dishListNow);
 
-        }catch (Exception e){
-            Toast.makeText(this, "dish", Toast.LENGTH_SHORT).show();
-        }
+        }catch (Exception e){Toast.makeText(this, "Error: full dish Recycler", Toast.LENGTH_SHORT).show();}
 
         try {
             getDishSearch.addTextChangedListener(new TextWatcher() {
@@ -84,7 +82,7 @@ public class DishActivity extends AppCompatActivity {
                     }
                 }
             });
-        }catch (Exception e){Toast.makeText(this, "error get text", Toast.LENGTH_SHORT).show();}
+        }catch (Exception e){Toast.makeText(this, "Error: prepare search", Toast.LENGTH_SHORT).show();}
 
         clearDishSearch.setOnClickListener(view -> {
             if(getDishSearch.getText().toString().length() < 1){}
@@ -112,35 +110,34 @@ public class DishActivity extends AppCompatActivity {
             startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
+
     private void setDishListFull(){
         try {
-            List<DishModel> list = (List<DishModel>) getIntent().getSerializableExtra("dishList");
-            dishListFull.addAll(list);
+            dishListFull.addAll((List<DishModel>) getIntent().getSerializableExtra("dishList"));
         }catch (Exception e){
-            Toast.makeText(this, "error getIntent", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error: getIntent list \n DishActivity", Toast.LENGTH_SHORT).show();
         }
     }
+
     public boolean searchCategory(View v){
-        String category = getDishSearch.getText().toString().toLowerCase().trim();
-
-        if(!category.isEmpty()){
-
-            for(DishModel model: dishListFull){
-                if(model.getNameDish().toLowerCase().equals(category)) {
-                    setCategoryListNow(model);
-                    setApplicationRecycle(dishListNow);
-                    return true;
+        try {
+            String category = getDishSearch.getText().toString().toLowerCase().trim();
+            if(!category.isEmpty()){
+                for(DishModel model: dishListFull){
+                    if(model.getNameDish().toLowerCase().equals(category)) {
+                        dishListNow.clear();
+                        dishListNow.add(model);
+                        setApplicationRecycle(dishListNow);
+                        return true;
+                    }
                 }
-            }
-            Toast.makeText(this, "Такой категории нет", Toast.LENGTH_SHORT).show();
-
-        }else Toast.makeText(this, "Введите категорию", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Такой категории нет", Toast.LENGTH_SHORT).show();
+            }else Toast.makeText(this, "Введите категорию", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){Toast.makeText(this, "Error: search fatal", Toast.LENGTH_SHORT).show();}
         return false;
+
     }
-    private void setCategoryListNow(DishModel model){
-        dishListNow.clear();
-        dishListNow.add(model);
-    }
+
     private void setApplicationRecycle(List<DishModel> listApp) {
         try {
             GridLayoutManager layoutManagers = new GridLayoutManager(this, 1);

@@ -12,15 +12,12 @@ public class StatesModel {
     public int getStatesBgImage() {
         return statesBgImage;
     }
-
     public void setStatesBgImage(int statesBgImage) {
         this.statesBgImage = statesBgImage;
     }
-
     public String getStatesName() {
         return statesName;
     }
-
     public void setStatesName(String statesName) {
         this.statesName = statesName;
     }

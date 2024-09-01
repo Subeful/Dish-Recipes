@@ -11,12 +11,6 @@ public class CategoryModel {
     String name;
     List<DishModel> dishList;
 
-    public CategoryModel(int id, Drawable background, String name) {
-        this.id = id;
-        this.background = background;
-        this.name = name;
-    }
-
     public CategoryModel(int id, Drawable background, String name, List<DishModel> dishList) {
         this.id = id;
         this.background = background;

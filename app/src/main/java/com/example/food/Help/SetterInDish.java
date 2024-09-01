@@ -19,17 +19,17 @@ public class SetterInDish {
         dishList.add(new DishModel(1, "Московская солянка", R.drawable.dish_category_first,  "1 час", R.drawable.view_dish_global,
                 R.drawable.lvl_4, "1 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Егор \nЯськин", "Администратор \nFood Recipe",
-                "Россия", "50 мин", R.drawable.star_4, R.drawable.pepper_1, R.drawable.in_love_1));
+                "Россия", "50 мин", R.drawable.star_4, R.drawable.pepper_1));
 
         dishList.add(new DishModel(2, "Окрошка", R.drawable.dish_category_first,  "30 мин", R.drawable.dish_first_okroshka,
                 R.drawable.lvl_2, "12 июля", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Анна \nШишкина", "Читатель и автор \nFood Recipe",
-                "Россия", "25 мин", R.drawable.star_4_5, R.drawable.pepper_1, R.drawable.in_love_1));
+                "Россия", "25 мин", R.drawable.star_4_5, R.drawable.pepper_1));
 
         dishList.add(new DishModel(3, "Томатный суп", R.drawable.dish_category_first,  "50 мин", R.drawable.dish_first_tomat_soup,
                 R.drawable.lvl_2, "13 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Пётр \nЧинаев", "Читатель и автор \nFood Recipe",
-                "Европейская", "20 мин", R.drawable.star_2, R.drawable.pepper_2, R.drawable.in_love_1));
+                "Европейская", "20 мин", R.drawable.star_2, R.drawable.pepper_2));
 
         for(DishModel model: dishList){
             CollectionCloud.commonDishList.add(model);

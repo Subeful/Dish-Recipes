@@ -30,9 +30,7 @@ public class LoverDish extends AppCompatActivity {
 
     RecyclerView loverDishRecycler;
     DishLoveAdapter dishAdapter;
-    GridLayoutManager layoutManagers;
     Context context;
-    int flagThread = 1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,19 +47,16 @@ public class LoverDish extends AppCompatActivity {
 
         context = LoverDish.this;
         try {
+
             loverDishRecycler = findViewById(R.id.loverDishRecycler);
             setApplicationRecycle(CollectionCloud.loverDishList);
 
         }catch (Exception e){Toast.makeText(this, "error recycler", Toast.LENGTH_SHORT).show();}
-
-        try {
-
-        }catch (Exception e){Toast.makeText(this, "error update", Toast.LENGTH_SHORT).show();}
     }
 
     public void setApplicationRecycle(LinkedList<DishModel> listApp) {
         try {
-            layoutManagers = new GridLayoutManager(this, 1);
+            GridLayoutManager layoutManagers = new GridLayoutManager(this, 1);
             loverDishRecycler.setLayoutManager(layoutManagers);
             dishAdapter = new DishLoveAdapter(listApp, this);
             loverDishRecycler.setAdapter(dishAdapter);
@@ -69,19 +64,7 @@ public class LoverDish extends AppCompatActivity {
             Toast.makeText(this, "error in recycler", Toast.LENGTH_SHORT).show();
         }
     }
-//    @Override
-//    public void onWindowFocusChanged(boolean hasFocus) {
-//        super.onWindowFocusChanged(hasFocus);
-//        if (hasFocus) {
-//            getWindow().getDecorView().setSystemUiVisibility(
-//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-//                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-//                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-//                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-//        }
-//    }
+
     public void goBasket(View v){
         try {
             Intent intent = new Intent(this, Basket.class);
@@ -103,6 +86,7 @@ public class LoverDish extends AppCompatActivity {
             finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
+
     public void update(View v){
         finish();
         overridePendingTransition(0, 0);

@@ -17,7 +17,6 @@ public class DishModel implements Serializable {
 
     String dateForPost;
     String descriptionDish;
-
     String authorPostDish;
     String descriptionAuthorPost;
 
@@ -25,14 +24,6 @@ public class DishModel implements Serializable {
     String timeOnKitchen;
     int starDish;
     int spicyDish;
-
-    public int getIsLover() {
-        return isLover;
-    }
-
-    public void setIsLover(int isLover) {
-        this.isLover = isLover;
-    }
 
     int isLover = R.drawable.in_love_1;
 
@@ -57,29 +48,36 @@ public class DishModel implements Serializable {
         this.spicyDish = spicyDish;
     }
 
-    public DishModel(int idDish, String nameDish, int categoryDish, String cookingTime, int backgroundImage,
-                     int difficultyDish, String dateForPost, String descriptionDish, String authorPostDish,
-                     String descriptionAuthorPost, String kitchenDish, String timeOnKitchen, int starDish,
-                     int spicyDish, int isLover) {
-        this.idDish = idDish;
-        this.nameDish = nameDish;
-        this.categoryDish = categoryDish;
-        this.cookingTime = cookingTime;
-        this.backgroundImage = backgroundImage;
-        this.difficultyDish = difficultyDish;
-        this.dateForPost = dateForPost;
-        this.descriptionDish = descriptionDish;
-        this.authorPostDish = authorPostDish;
-        this.descriptionAuthorPost = descriptionAuthorPost;
-        KitchenDish = kitchenDish;
-        this.timeOnKitchen = timeOnKitchen;
-        this.starDish = starDish;
-        this.spicyDish = spicyDish;
-        this.isLover = isLover;
-    }
 
+//    public DishModel(int idDish, String nameDish, int categoryDish, String cookingTime, int backgroundImage,
+//                     int difficultyDish, String dateForPost, String descriptionDish, String authorPostDish,
+//                     String descriptionAuthorPost, String kitchenDish, String timeOnKitchen, int starDish,
+//                     int spicyDish, int isLover) {
+//        this.idDish = idDish;
+//        this.nameDish = nameDish;
+//        this.categoryDish = categoryDish;
+//        this.cookingTime = cookingTime;
+//        this.backgroundImage = backgroundImage;
+//        this.difficultyDish = difficultyDish;
+//        this.dateForPost = dateForPost;
+//        this.descriptionDish = descriptionDish;
+//        this.authorPostDish = authorPostDish;
+//        this.descriptionAuthorPost = descriptionAuthorPost;
+//        KitchenDish = kitchenDish;
+//        this.timeOnKitchen = timeOnKitchen;
+//        this.starDish = starDish;
+//        this.spicyDish = spicyDish;
+//        this.isLover = isLover;
+//    }
     public int getCategoryDish() {
         return categoryDish;
+    }
+
+    public int getIsLover() {
+        return isLover;
+    }
+    public void setIsLover(int isLover) {
+        this.isLover = isLover;
     }
     public void setCategoryDish(int categoryDish) {
         this.categoryDish = categoryDish;

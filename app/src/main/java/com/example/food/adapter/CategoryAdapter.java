@@ -54,7 +54,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 if (!categoryList.get(position).getDishList().isEmpty()){
                     intent.putExtra("dishList", (Serializable) categoryList.get(position).getDishList());
                     categoryContext.startActivity(intent);
-                }else Toast.makeText(categoryContext, "Нет блюд", Toast.LENGTH_SHORT).show();
+                }else Toast.makeText(categoryContext, "Error: non dish", Toast.LENGTH_SHORT).show();
             }
         });
     }

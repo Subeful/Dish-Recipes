@@ -50,8 +50,6 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishViewHolder
             Intent intent = new Intent(dishContext, DescriptionDish.class);
 
             intent.putExtra("name", dishList.get(position).getNameDish());
-            intent.putExtra("isLove", dishList.get(position).getIsLover());
-
             dishContext.startActivity(intent);
         });
 
