@@ -106,6 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
+                        android:onClick="goMyDish"
                         android:background="@android:color/transparent"
                         android:contentDescription="@string/app_name"
                         android:src="@drawable/my_recipe_panel" />
@@ -309,6 +310,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
             android:scaleType="fitXY"
+            android:onClick="goSeson"
             app:layout_constraintEnd_toStartOf="@+id/imageButton85"
             app:layout_constraintStart_toEndOf="@+id/imageButton35"
             app:layout_constraintTop_toTopOf="parent"
@@ -322,6 +324,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_weight="0"
+            android:onClick="goSetting"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
             android:scaleType="fitXY"

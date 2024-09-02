@@ -108,6 +108,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
             android:scaleType="fitXY"
+            android:onClick="goSeson"
             app:layout_constraintEnd_toStartOf="@+id/imageButton8"
             app:layout_constraintStart_toEndOf="@+id/imageButton3"
             app:layout_constraintTop_toTopOf="parent"
@@ -121,6 +122,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_weight="0"
+            android:onClick="goSetting"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
             android:scaleType="fitXY"
@@ -136,6 +138,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/LLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -146,11 +149,47 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="22dp"
-                android:src="@drawable/setting_panel_1_2"/>
+                android:layout_height="85dp"
+                android:background="@drawable/setting_panel_1_1"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:background="@drawable/avatarka"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="90dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/inter_extralight"
+                    android:text="@string/text_1"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="90dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/inter_extralight"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -161,6 +200,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:onClick="goLovers"
                     android:layout_height="49dp">
                     <TextView
                         android:layout_width="match_parent"
@@ -174,12 +214,14 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:onClick="goMyDish"
                     android:layout_height="45dp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
                         android:fontFamily="@font/inter"
+
                         android:text="Мои рецепты"
                         android:layout_gravity="center"
                         android:textColor="#E9E7E7"
@@ -187,6 +229,7 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:onClick="goBasket"
                     android:layout_height="45dp">
                     <TextView
                         android:layout_width="match_parent"
@@ -336,6 +379,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="exitApp"
                     android:layout_weight="1">
                     <TextView
                         android:layout_width="match_parent"

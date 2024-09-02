@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,54 +16,53 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food.Help.CollectionCloud;
-import com.example.food.adapter.DishAdapter;
+import com.example.food.Help.SetterInDish;
 import com.example.food.adapter.DishLoveAdapter;
+import com.example.food.adapter.ProductAdapter;
 import com.example.food.model.DishModel;
+import com.example.food.model.SeasonProductModel;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 
-public class LoverDish extends AppCompatActivity {
+public class Season extends AppCompatActivity {
 
-    RecyclerView loverDishRecycler;
-    DishLoveAdapter dishAdapter;
+    RecyclerView productRecycler;
+    ProductAdapter productAdapter;
     Context context;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_lover_dish);
+        setContentView(R.layout.activity_season);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
 
-        context = LoverDish.this;
+        context = Season.this;
         try {
 
-            loverDishRecycler = findViewById(R.id.loverDishRecycler);
-            setApplicationRecycle(CollectionCloud.loverDishList);
+            productRecycler = findViewById(R.id.productRecycler);
+            CollectionCloud.seasonProductList.addAll(SetterInDish.setSeasonProduct());
+            setApplicationRecycle(CollectionCloud.seasonProductList);
 
-        }catch (Exception e){Toast.makeText(this, "error recycler", Toast.LENGTH_SHORT).show();}
+        }catch (Exception e){
+            Toast.makeText(this, "error recycler", Toast.LENGTH_SHORT).show();}
     }
 
-    public void setApplicationRecycle(LinkedList<DishModel> listApp) {
+    public void setApplicationRecycle(LinkedList<SeasonProductModel> listApp) {
         try {
             GridLayoutManager layoutManagers = new GridLayoutManager(this, 1);
-            loverDishRecycler.setLayoutManager(layoutManagers);
-            dishAdapter = new DishLoveAdapter(listApp, this);
-            loverDishRecycler.setAdapter(dishAdapter);
+            productRecycler.setLayoutManager(layoutManagers);
+            productAdapter = new ProductAdapter(context, listApp);
+            productRecycler.setAdapter(productAdapter);
         } catch (Exception e) {
             Toast.makeText(this, "error in recycler", Toast.LENGTH_SHORT).show();
         }
     }
-
     public void goBasket(View v){
         try {
             Intent intent = new Intent(this, Basket.class);
@@ -92,12 +90,7 @@ public class LoverDish extends AppCompatActivity {
             startActivity(intent);
             finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }public void goSeson(View v){
-        try {
-            Intent intent = new Intent(this, Season.class);
-            startActivity(intent);
-        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }
+    }public void goSeson(View v){}
     public void update(View v){
         finish();
         overridePendingTransition(0, 0);

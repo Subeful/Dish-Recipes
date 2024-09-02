@@ -108,6 +108,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
             android:scaleType="fitXY"
+            android:onClick="goSeson"
             app:layout_constraintEnd_toStartOf="@+id/imageButton8"
             app:layout_constraintStart_toEndOf="@+id/imageButton3"
             app:layout_constraintTop_toTopOf="parent"

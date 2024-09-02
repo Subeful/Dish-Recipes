@@ -2,6 +2,7 @@ package com.example.food.Help;
 
 import com.example.food.model.CategoryModel;
 import com.example.food.model.DishModel;
+import com.example.food.model.SeasonProductModel;
 import com.example.food.model.StatesModel;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class CollectionCloud{
     public static LinkedList<DishModel> lastDishList = new LinkedList<>();
 
     public static LinkedList<DishModel> myRecipeList = new LinkedList<>();
+
+    public static int flagSeasonProductList = 0;
+    public static LinkedList<SeasonProductModel> seasonProductList = new LinkedList<>();
 
     public static LinkedList<DishModel> lastSeeDishList = new LinkedList<>();
 

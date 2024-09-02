@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.food.DescriptionDish;
 import com.example.food.R;
 import com.example.food.model.DishModel;
+import com.example.food.model.SeasonProductModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -151,9 +152,24 @@ public class SetterInDish {
         return dishList;
     }
 
+
     public static List<DishModel> setGarnishDish(){
         List<DishModel> dishList = new ArrayList<>();
         return dishList;
+    }
+
+    public static List<SeasonProductModel> setSeasonProduct(){
+        List<SeasonProductModel> list = new ArrayList<>();
+        if(CollectionCloud.flagSeasonProductList == 0){
+            list.add(new SeasonProductModel(1, R.drawable.product_currant, "Смородина"));
+            list.add(new SeasonProductModel(2, R.drawable.product_apricot, "Абрикос"));
+            list.add(new SeasonProductModel(3, R.drawable.product_zucchini, "Кабачок"));
+            list.add(new SeasonProductModel(3, R.drawable.product_lemonade, "Лимонад"));
+            list.add(new SeasonProductModel(3, R.drawable.product_mushrooms, "Лисички"));
+            list.add(new SeasonProductModel(3, R.drawable.product_jam, "Варенье"));
+            CollectionCloud.flagSeasonProductList = 1;
+        }
+        return list;
     }
 
 
