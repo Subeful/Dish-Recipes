@@ -39,6 +39,8 @@ public class SetterInDish {
         return dishList;
     }
 
+
+
         ////2
     public static List<DishModel> setSecondDish(){
         List<DishModel> dishList = new ArrayList<>();

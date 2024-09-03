@@ -186,7 +186,7 @@
                         android:layout_height="match_parent"
                         app:cardCornerRadius="20dp">
                         <ImageView
-                            android:id="@+id/card_foto_layaut"
+                            android:id="@+id/card_foto"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
@@ -228,6 +228,7 @@
                 android:background="@drawable/card_bg_panel">
 
                 <EditText
+                    android:id="@+id/card_name"
                     android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -248,6 +249,7 @@
                 android:background="@drawable/card_bg_panel">
 
                 <EditText
+                    android:id="@+id/card_description"
                     android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -268,6 +270,7 @@
                 android:background="@drawable/card_bg_panel">
 
                 <EditText
+                    android:id="@+id/card_kitchen"
                     android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -300,6 +303,7 @@
                 android:background="@drawable/card_bg_panel">
 
                 <EditText
+                    android:id="@+id/card_cooking_time"
                     android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -320,6 +324,7 @@
                 android:background="@drawable/card_bg_panel">
 
                 <EditText
+                    android:id="@+id/card_all_time"
                     android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -351,6 +356,7 @@
                 android:background="@drawable/card_bg_panel">
 
                 <EditText
+                    android:id="@+id/card_date"
                     android:layout_marginStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -378,13 +384,14 @@
                 android:layout_marginTop="15dp">
 
                 <LinearLayout
+                    android:id="@+id/card_spasy"
                     android:layout_width="160dp"
                     android:layout_weight="1"
                     android:layout_gravity="start"
-
                     android:layout_height="match_parent"
                     android:background="@drawable/card_mini_bg_panel">
                     <TextView
+                        android:id="@+id/card_text_spasy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#A4A4A4"
@@ -396,19 +403,21 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="80dp"
+                    android:layout_width="35dp"
                     android:layout_weight="1"
                     android:layout_gravity="start"
                     android:layout_height="match_parent">
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/card_lvl"
                     android:layout_width="160dp"
                     android:layout_gravity="end"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:background="@drawable/card_mini_bg_panel">
                     <TextView
+                        android:id="@+id/card_text_lvl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#A4A4A4"
@@ -425,13 +434,14 @@
                 android:layout_marginTop="15dp">
 
                 <LinearLayout
+                    android:id="@+id/card_category"
                     android:layout_width="160dp"
                     android:layout_weight="1"
                     android:layout_gravity="start"
-
                     android:layout_height="match_parent"
                     android:background="@drawable/card_mini_bg_panel">
                     <TextView
+                        android:id="@+id/card_text_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#A4A4A4"
@@ -443,19 +453,21 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="80dp"
+                    android:layout_width="35dp"
                     android:layout_weight="1"
                     android:layout_gravity="start"
                     android:layout_height="match_parent">
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/card_like"
                     android:layout_width="160dp"
                     android:layout_gravity="end"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:background="@drawable/card_mini_bg_panel">
                     <TextView
+                        android:id="@+id/card_text_like"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#A4A4A4"
@@ -467,13 +479,15 @@
                 </LinearLayout>
             </LinearLayout>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/send_recipe"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/send_recipe"
+                android:contentDescription="@string/app_name"
+                android:onClick="createDish" />
 
         </LinearLayout>
 
