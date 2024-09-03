@@ -136,6 +136,12 @@ public class Global extends AppCompatActivity {
             startActivity(intent);
             finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }public void goCreate(View v){
+        try {
+            Intent intent = new Intent(this, CreateCard.class);
+            startActivity(intent);
+            finish();
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
 
 }
