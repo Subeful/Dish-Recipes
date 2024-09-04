@@ -1,6 +1,7 @@
 package com.example.food;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     static int flag = 0;
 
+    Context context = MainActivity.this;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -67,19 +70,21 @@ public class MainActivity extends AppCompatActivity {
             setCategoryListFull();
             categoryListNow.addAll(CollectionCloud.commonCategoryList);
             setApplicationRecycle(categoryListNow);
+            setTextDescription();
         }catch (Exception e){Toast.makeText(this, "Error: full main", Toast.LENGTH_SHORT).show();}
 
-        setTextDescription();
 
     }
     private void setBeginDishList(){
-        if(CollectionCloud.flagCommonCategoryList == 0){
-            SetterInDish.setFirstDish();
-            SetterInDish.setSecondDish();
-            SetterInDish.setSaladDish();
-            SetterInDish.setSnackDish();
-            CollectionCloud.flagCommonCategoryList = 1;
-        }
+        try {
+            if(CollectionCloud.flagCommonCategoryList == 0){
+                SetterInDish.setFirstDish(context);
+                SetterInDish.setSecondDish(context);
+                SetterInDish.setSaladDish(context);
+                SetterInDish.setSnackDish(context);
+                CollectionCloud.flagCommonCategoryList = 1;
+            }
+        }catch (Exception e){Toast.makeText(this, "error begin", Toast.LENGTH_SHORT).show();}
     }
 
     private void setTextDescription() {
@@ -200,7 +205,6 @@ public class MainActivity extends AppCompatActivity {
                         "Гарниры", CategoryDishLish.a5));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(9, getDrawable(R.drawable.category_desert),
                         "Десерты", CategoryDishLish.a6));
-
             } catch (Exception e) {Toast.makeText(this, "Error: set commonCategoryList \n MainActivity", Toast.LENGTH_SHORT).show();}
         }
 

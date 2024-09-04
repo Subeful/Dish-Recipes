@@ -41,7 +41,7 @@ public class LastDishAdapter extends RecyclerView.Adapter<LastDishAdapter.LastDi
     @Override
     public void onBindViewHolder(@NonNull LastDishViewHolder holder, int position) {
         holder.lastDishName.setText(lastDishList.get(position).getNameDish());
-        holder.lastsDishView.setBackground(context.getDrawable(lastDishList.get(position).getBackgroundImage()));
+        holder.lastsDishView.setBackground(lastDishList.get(position).getBackgroundImage());
 
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, DescriptionDish.class);

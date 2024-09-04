@@ -42,7 +42,7 @@ public class DishLoveAdapter extends RecyclerView.Adapter<DishLoveAdapter.DishLo
     public void onBindViewHolder(@NonNull DishLoveAdapter.DishLoveVieHolder holder, int position) {
 
         holder.difficultyDish.setBackground(dishContext.getDrawable(dishList.get(position).getDifficultyDish()));
-        holder.backgroundImage.setBackground(dishContext.getDrawable(dishList.get(position).getBackgroundImage()));
+        holder.backgroundImage.setBackground(dishList.get(position).getBackgroundImage());
         holder.cookingTime.setText(dishList.get(position).getCookingTime());
         holder.nameDish.setText(dishList.get(position).getNameDish());
 

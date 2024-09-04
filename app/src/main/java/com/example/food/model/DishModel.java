@@ -1,5 +1,6 @@
 package com.example.food.model;
 
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -12,7 +13,7 @@ public class DishModel implements Serializable {
     String nameDish;
     int categoryDish;
     String cookingTime;
-    int backgroundImage;
+    Drawable backgroundImage;
     int difficultyDish;
 
     String dateForPost;
@@ -29,7 +30,7 @@ public class DishModel implements Serializable {
 
     int flagOnLove;
 
-    public DishModel(int idDish, String nameDish, int categoryDish, String cookingTime, int backgroundImage,
+    public DishModel(int idDish, String nameDish, int categoryDish, String cookingTime, Drawable backgroundImage,
                      int difficultyDish, String dateForPost, String descriptionDish, String authorPostDish,
                      String descriptionAuthorPost, String kitchenDish, String timeOnKitchen, int starDish, int spicyDish) {
         this.idDish = idDish;
@@ -148,15 +149,18 @@ public class DishModel implements Serializable {
     public void setCookingTime(String cookingTime) {
         this.cookingTime = cookingTime;
     }
-    public int getBackgroundImage() {
-        return backgroundImage;
-    }
-    public void setBackgroundImage(int backgroundImage) {
-        this.backgroundImage = backgroundImage;
-    }
     public int getDifficultyDish() {
         return difficultyDish;
     }
+
+    public Drawable getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(Drawable backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
     public void setDifficultyDish(int difficultyDish) {
         this.difficultyDish = difficultyDish;
     }

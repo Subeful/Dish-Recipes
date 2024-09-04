@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +27,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.food.Help.CategoryDishLish;
 import com.example.food.Help.CollectionCloud;
+import com.example.food.model.CategoryModel;
 import com.example.food.model.DishModel;
+
+import java.util.LinkedList;
 
 public class CreateCard extends AppCompatActivity {
 
@@ -98,14 +102,12 @@ public class CreateCard extends AppCompatActivity {
         String nameDish;
         int categoryDish;
         String cookingTime;
-        int backgroundImage = 0;
+        Drawable backgroundImage = null;
         int difficultyDish;
-
         String dateForPost;
         String descriptionDish;
         String authorPostDish;
         String descriptionAuthorPost;
-
         String kitchenDish;
         String timeOnKitchen;
         int starDish;
@@ -117,10 +119,8 @@ public class CreateCard extends AppCompatActivity {
         categoryDish = category;
         cookingTime = allTime.getText().toString();
 
-//        try {backgroundImage = card_foto_layaut.getImageAlpha();}
-//        catch (Exception e) {Toast.makeText(this, "Загрузите фотографию", Toast.LENGTH_SHORT).show();}
-
-        backgroundImage = R.drawable.dish_first_tomat_soup;
+        try {backgroundImage = card_foto_layaut.getDrawable();}
+        catch (Exception e) {Toast.makeText(this, "Загрузите фотографию", Toast.LENGTH_SHORT).show();}
 
         difficultyDish = lvl;
         dateForPost = date.getText().toString();
@@ -135,20 +135,54 @@ public class CreateCard extends AppCompatActivity {
 
         if(firstBlock(idDish, nameDish, categoryDish, cookingTime, difficultyDish) &&
                 secondBlock(dateForPost,descriptionDish, authorPostDish, descriptionAuthorPost) &&
-                thirdBlock(kitchenDish, timeOnKitchen, starDish, spicyDish)){
+                thirdBlock(kitchenDish, timeOnKitchen, starDish, spicyDish)) {
+
             try {
-                DishModel dishModel = new DishModel(idDish, nameDish, categoryDish, cookingTime, backgroundImage,
-                        difficultyDish, dateForPost, descriptionDish, authorPostDish, descriptionAuthorPost,
-                        kitchenDish, timeOnKitchen, starDish, spicyDish);
+
+                DishModel dishModel = new DishModel(idDish, nameDish, categoryDish, cookingTime, backgroundImage, difficultyDish, dateForPost, descriptionDish, authorPostDish, descriptionAuthorPost, kitchenDish, timeOnKitchen, starDish, spicyDish);
+
+                CategoryModel categoryModel = null;
+                int categoryDishs = 0;
+                if(category == R.drawable.dish_category_first)  {
+                    categoryDishs = 1;
+                    categoryModel = CollectionCloud.commonCategoryList.get(0);
+                }
+                else if(category == R.drawable.dish_category_second)  {
+                    categoryDishs = 2;
+                    categoryModel = CollectionCloud.commonCategoryList.get(1);
+                }
+                else if(category == R.drawable.dish_category_salad)  {
+                    categoryDishs = 3;
+                    categoryModel = CollectionCloud.commonCategoryList.get(2);
+                }
+                else if(category == R.drawable.dish_category_snacs)  {
+                    categoryDishs = 4;
+                    categoryModel = CollectionCloud.commonCategoryList.get(3);
+                }
+
+                if(categoryModel != null){
+                    int flag = 0;
+                    for(DishModel model: categoryModel.getDishList()){
+                        if(model.getNameDish().equals(nameDish)){
+                            flag = 1;
+                        }
+                    }if(flag == 0) {
+                        switch (categoryDishs){
+                            case 1: CategoryDishLish.first.add(dishModel);
+                            case 2: CategoryDishLish.second.add(dishModel);
+                            case 3: CategoryDishLish.salad.add(dishModel);
+                            case 4: CategoryDishLish.snack.add(dishModel);
+                            default:;
+                        }
+                        CollectionCloud.commonDishList.add(dishModel);
+                        CollectionCloud.myRecipeList.add(dishModel);
+                        Toast.makeText(this, "Рецепт добавлен", Toast.LENGTH_SHORT).show();
+                    }else Toast.makeText(this, "Такое блюдо уже есть", Toast.LENGTH_SHORT).show();
+                }
 
 
-                if(category == R.drawable.dish_category_first)  CategoryDishLish.first.add(dishModel);
-                if(category == R.drawable.dish_category_second)  CategoryDishLish.second.add(dishModel);
-                if(category == R.drawable.dish_category_salad)  CategoryDishLish.salad.add(dishModel);
-                if(category == R.drawable.dish_category_snacs)  CategoryDishLish.snack.add(dishModel);
 
-                CollectionCloud.commonDishList.add(dishModel);
-                Toast.makeText(this, "Рецепт добавлен", Toast.LENGTH_SHORT).show();
+
             } catch (Exception e){Toast.makeText(this, "Error: don't create", Toast.LENGTH_SHORT).show();}
         }
         else Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();

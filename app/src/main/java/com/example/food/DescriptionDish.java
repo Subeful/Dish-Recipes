@@ -195,7 +195,7 @@ public class DescriptionDish extends AppCompatActivity {
     @SuppressLint("UseCompatLoadingForDrawables")
     private void setUI(){
 
-        backImageDish.setBackground(getDrawable(dishModel.getBackgroundImage()));
+        backImageDish.setBackground(dishModel.getBackgroundImage());
         categoryDish.setBackground(getDrawable(dishModel.getCategoryDish()));
         starDish.setBackground(getDrawable(dishModel.getStarDish()));
         hardLvl.setBackground(getDrawable(dishModel.getDifficultyDish()));
