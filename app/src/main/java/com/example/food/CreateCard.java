@@ -24,6 +24,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.food.Help.CategoryDishLish;
 import com.example.food.Help.CollectionCloud;
 import com.example.food.model.DishModel;
 
@@ -116,8 +117,10 @@ public class CreateCard extends AppCompatActivity {
         categoryDish = category;
         cookingTime = allTime.getText().toString();
 
-        try {backgroundImage = card_foto_layaut.getImageAlpha();}
-        catch (Exception e) {Toast.makeText(this, "Загрузите фотографию", Toast.LENGTH_SHORT).show();}
+//        try {backgroundImage = card_foto_layaut.getImageAlpha();}
+//        catch (Exception e) {Toast.makeText(this, "Загрузите фотографию", Toast.LENGTH_SHORT).show();}
+
+        backgroundImage = R.drawable.dish_first_tomat_soup;
 
         difficultyDish = lvl;
         dateForPost = date.getText().toString();
@@ -138,17 +141,13 @@ public class CreateCard extends AppCompatActivity {
                         difficultyDish, dateForPost, descriptionDish, authorPostDish, descriptionAuthorPost,
                         kitchenDish, timeOnKitchen, starDish, spicyDish);
 
+
+                if(category == R.drawable.dish_category_first)  CategoryDishLish.first.add(dishModel);
+                if(category == R.drawable.dish_category_second)  CategoryDishLish.second.add(dishModel);
+                if(category == R.drawable.dish_category_salad)  CategoryDishLish.salad.add(dishModel);
+                if(category == R.drawable.dish_category_snacs)  CategoryDishLish.snack.add(dishModel);
+
                 CollectionCloud.commonDishList.add(dishModel);
-
-                String categores = "null";
-                switch (category){
-                    case 1: {categores = "Первые блюда"; break;}
-                    case 2: {categores = "Вторые блюда"; break;}
-                    case 3: {categores = "Салаты"; break;}
-                    case 4: {categores = "Закуски"; break;}
-                }
-
-
                 Toast.makeText(this, "Рецепт добавлен", Toast.LENGTH_SHORT).show();
             } catch (Exception e){Toast.makeText(this, "Error: don't create", Toast.LENGTH_SHORT).show();}
         }

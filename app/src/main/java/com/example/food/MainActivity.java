@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.food.Help.CategoryDishLish;
 import com.example.food.Help.CollectionCloud;
 import com.example.food.adapter.CategoryAdapter;
 import com.example.food.model.CategoryModel;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             categoryListView = findViewById(R.id.categoryColumn);
             getCategorySearch = findViewById(R.id.getCategorySearch);
             clearCategorySearch = findViewById(R.id.clearCategorySearch);
+            setBeginDishList();
             setCategoryListFull();
             categoryListNow.addAll(CollectionCloud.commonCategoryList);
             setApplicationRecycle(categoryListNow);
@@ -69,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
 
         setTextDescription();
 
+    }
+    private void setBeginDishList(){
+        if(CollectionCloud.flagCommonCategoryList == 0){
+            SetterInDish.setFirstDish();
+            SetterInDish.setSecondDish();
+            SetterInDish.setSaladDish();
+            SetterInDish.setSnackDish();
+            CollectionCloud.flagCommonCategoryList = 1;
+        }
     }
 
     private void setTextDescription() {
@@ -167,34 +178,33 @@ public class MainActivity extends AppCompatActivity {
     }
     @SuppressLint("UseCompatLoadingForDrawables")
     private void setCategoryListFull(){
-        if(CollectionCloud.flagCommonCategoryList == 0) {
             try {
+                CollectionCloud.commonCategoryList.clear();
                 CollectionCloud.commonCategoryList.add(new CategoryModel(1, getDrawable(R.drawable.category_first),
-                        "Первые блюда", SetterInDish.setFirstDish()));
+                        "Первые блюда", CategoryDishLish.first));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(2, getDrawable(R.drawable.category_second),
-                        "Вторые блюда", SetterInDish.setSecondDish()));
+                        "Вторые блюда", CategoryDishLish.second));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(3, getDrawable(R.drawable.category_salat),
-                        "Салаты", SetterInDish.setSaladDish()));
+                        "Салаты", CategoryDishLish.salad));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(4, getDrawable(R.drawable.category_snacks),
-                        "Закуски", SetterInDish.setSnackDish()));
+                        "Закуски", CategoryDishLish.snack));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(5, getDrawable(R.drawable.category_cake),
-                        "Выпечка", SetterInDish.setBakeryDish()));
+                        "Выпечка", CategoryDishLish.a1));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(6, getDrawable(R.drawable.category_sous),
-                        "Соусы и маринады", SetterInDish.setSouseDish()));
+                        "Соусы и маринады", CategoryDishLish.a2));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(7, getDrawable(R.drawable.category_zacuski),
-                        "Заготовки", SetterInDish.setPrepareDish()));
+                        "Заготовки", CategoryDishLish.a3));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(8, getDrawable(R.drawable.category_drinks),
-                        "Напитки", SetterInDish.setDrinksDish()));
+                        "Напитки", CategoryDishLish.a4));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(10, getDrawable(R.drawable.category_garnir),
-                        "Гарниры", SetterInDish.setGarnishDish()));
+                        "Гарниры", CategoryDishLish.a5));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(9, getDrawable(R.drawable.category_desert),
-                        "Десерты", SetterInDish.setDessertDish()));
+                        "Десерты", CategoryDishLish.a6));
 
-                CollectionCloud.flagCommonCategoryList = 1;
             } catch (Exception e) {Toast.makeText(this, "Error: set commonCategoryList \n MainActivity", Toast.LENGTH_SHORT).show();}
         }
 
     }
 
-}
+
 
