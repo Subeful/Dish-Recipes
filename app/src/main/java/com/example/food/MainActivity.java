@@ -1,6 +1,7 @@
 package com.example.food;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     static int flag = 0;
 
+    Context context = MainActivity.this;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -63,16 +66,25 @@ public class MainActivity extends AppCompatActivity {
             categoryListView = findViewById(R.id.categoryColumn);
             getCategorySearch = findViewById(R.id.getCategorySearch);
             clearCategorySearch = findViewById(R.id.clearCategorySearch);
-
-            setBeginDish();
+            setBeginDishList();
             setCategoryListFull();
-
             categoryListNow.addAll(CollectionCloud.commonCategoryList);
             setApplicationRecycle(categoryListNow);
+            setTextDescription();
         }catch (Exception e){Toast.makeText(this, "Error: full main", Toast.LENGTH_SHORT).show();}
 
-        setTextDescription();
 
+    }
+    private void setBeginDishList(){
+        try {
+            if(CollectionCloud.flagCommonCategoryList == 0){
+                SetterInDish.setFirstDish(context);
+                SetterInDish.setSecondDish(context);
+                SetterInDish.setSaladDish(context);
+                SetterInDish.setSnackDish(context);
+                CollectionCloud.flagCommonCategoryList = 1;
+            }
+        }catch (Exception e){Toast.makeText(this, "error begin", Toast.LENGTH_SHORT).show();}
     }
 
     private void setTextDescription() {
@@ -169,20 +181,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "error in recycler", Toast.LENGTH_SHORT).show();
         }
     }
-
-    private void setBeginDish(){
-        try {
-            if(CollectionCloud.flagCommonCategoryList == 0) {
-                SetterInDish.setFirstDish();
-                SetterInDish.setSecondDish();
-                SetterInDish.setSaladDish();
-                SetterInDish.setSnackDish();
-                CollectionCloud.flagCommonCategoryList = 1;
-            }
-        }catch (Exception e) {Toast.makeText(this, "Error: set begin", Toast.LENGTH_SHORT).show();}
-    }
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void setCategoryListFull(){
             try {
+                CollectionCloud.commonCategoryList.clear();
                 CollectionCloud.commonCategoryList.add(new CategoryModel(1, getDrawable(R.drawable.category_first),
                         "Первые блюда", CategoryDishLish.first));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(2, getDrawable(R.drawable.category_second),
@@ -192,22 +194,21 @@ public class MainActivity extends AppCompatActivity {
                 CollectionCloud.commonCategoryList.add(new CategoryModel(4, getDrawable(R.drawable.category_snacks),
                         "Закуски", CategoryDishLish.snack));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(5, getDrawable(R.drawable.category_cake),
-                        "Выпечка", SetterInDish.setBakeryDish()));
+                        "Выпечка", CategoryDishLish.a1));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(6, getDrawable(R.drawable.category_sous),
-                        "Соусы и маринады", SetterInDish.setSouseDish()));
+                        "Соусы и маринады", CategoryDishLish.a2));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(7, getDrawable(R.drawable.category_zacuski),
-                        "Заготовки", SetterInDish.setPrepareDish()));
+                        "Заготовки", CategoryDishLish.a3));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(8, getDrawable(R.drawable.category_drinks),
-                        "Напитки", SetterInDish.setDrinksDish()));
+                        "Напитки", CategoryDishLish.a4));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(10, getDrawable(R.drawable.category_garnir),
-                        "Гарниры", SetterInDish.setGarnishDish()));
+                        "Гарниры", CategoryDishLish.a5));
                 CollectionCloud.commonCategoryList.add(new CategoryModel(9, getDrawable(R.drawable.category_desert),
-                        "Десерты", SetterInDish.setDessertDish()));
-
+                        "Десерты", CategoryDishLish.a6));
             } catch (Exception e) {Toast.makeText(this, "Error: set commonCategoryList \n MainActivity", Toast.LENGTH_SHORT).show();}
         }
 
+    }
 
 
-}
 

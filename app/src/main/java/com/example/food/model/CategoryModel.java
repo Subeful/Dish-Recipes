@@ -3,6 +3,8 @@ package com.example.food.model;
 import android.graphics.drawable.Drawable;
 
 
+import com.example.food.Help.CategoryDishLish;
+
 import java.util.List;
 
 public class CategoryModel {
@@ -19,8 +21,14 @@ public class CategoryModel {
     }
 
     public List<DishModel> getDishList() {
-        return dishList;
-    }
+        switch (name){
+            case "Первые блюда" : return CategoryDishLish.first;
+            case "Вторые блюда" : return CategoryDishLish.second;
+            case "Салаты" : return CategoryDishLish.salad;
+            case "Закуски" : return CategoryDishLish.snack;
+            default: return dishList;
+            }
+        }
 
     public void setDishList(List<DishModel> dishList) {
         this.dishList = dishList;

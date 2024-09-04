@@ -1,6 +1,7 @@
 package com.example.food;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,10 +20,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.food.Help.CategoryDishLish;
 import com.example.food.adapter.DishAdapter;
 import com.example.food.model.CategoryModel;
 import com.example.food.model.DishModel;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DishActivity extends AppCompatActivity {
@@ -34,6 +38,8 @@ public class DishActivity extends AppCompatActivity {
     DishAdapter dishAdapter;
     List<DishModel> dishListFull = new ArrayList<>();
     List<DishModel> dishListNow = new ArrayList<>();
+
+    Context context = DishActivity.this;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -92,41 +98,24 @@ public class DishActivity extends AppCompatActivity {
             }
         });
     }
-    public void goBasket(View v){
-        try {
-            Intent intent = new Intent(this, Basket.class);
-            startActivity(intent);
-        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }
-    public void goGlobal(View v){
-        try {
-            Intent intent = new Intent(this, Global.class);
-            startActivity(intent);
-        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }
-    public void goSearch(View v){
-        try {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }public void goSetting(View v){
-        try {
-            Intent intent = new Intent(this, Setting.class);
-            startActivity(intent);
-            finish();
-        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }public void goSeson(View v){
-        try {
-            Intent intent = new Intent(this, Season.class);
-            startActivity(intent);
-        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }
-
     private void setDishListFull(){
         try {
-            dishListFull.addAll((List<DishModel>) getIntent().getSerializableExtra("dishList"));
+            dishListFull.addAll(getDishList(getIntent().getStringExtra("categoryName")));
+
+//            dishListFull.addAll((List<DishModel>) getIntent().getSerializableExtra("dishList"));
+
         }catch (Exception e){
             Toast.makeText(this, "Error: getIntent list \n DishActivity", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private LinkedList<DishModel> getDishList(String categoryName){
+        switch (categoryName){
+            case "Первые блюда" : return CategoryDishLish.first;
+            case "Вторые блюда" : return CategoryDishLish.second;
+            case "Салаты" : return CategoryDishLish.salad;
+            case "Закуски" : return CategoryDishLish.snack;
+            default: return CategoryDishLish.a1;
         }
     }
 
@@ -158,5 +147,37 @@ public class DishActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, "error in recycler", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void goBasket(View v){
+        try {
+            Intent intent = new Intent(this, Basket.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+    public void goGlobal(View v){
+        try {
+            Intent intent = new Intent(this, Global.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+    public void goSearch(View v){
+        try {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+    public void goSetting(View v){
+        try {
+            Intent intent = new Intent(this, Setting.class);
+            startActivity(intent);
+            finish();
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+    public void goSeson(View v){
+        try {
+            Intent intent = new Intent(this, Season.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
 }

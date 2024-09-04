@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +27,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.food.Help.CategoryDishLish;
 import com.example.food.Help.CollectionCloud;
+import com.example.food.model.CategoryModel;
 import com.example.food.model.DishModel;
+
+import java.util.LinkedList;
 
 public class CreateCard extends AppCompatActivity {
 
@@ -41,8 +45,11 @@ public class CreateCard extends AppCompatActivity {
     private PopupWindow popupWindowLike;
     private PopupWindow popupWindowLvl;
 
-
     int spasy, lvl, category, like;
+
+    CategoryModel categoryModel = null;
+    int categoryDishs = 0;
+    DishModel dishModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,22 +101,20 @@ public class CreateCard extends AppCompatActivity {
 
     public void createDish(View v){
 
-        int idDish;
         String nameDish;
-        int categoryDish;
         String cookingTime;
-        int backgroundImage = 0;
-        int difficultyDish;
-
         String dateForPost;
         String descriptionDish;
         String authorPostDish;
         String descriptionAuthorPost;
-
         String kitchenDish;
         String timeOnKitchen;
+        int idDish;
+        int categoryDish;
+        int difficultyDish;
         int starDish;
         int spicyDish;
+        Drawable backgroundImage = null;
 
 
         idDish = CollectionCloud.commonDishList.size();
@@ -117,7 +122,7 @@ public class CreateCard extends AppCompatActivity {
         categoryDish = category;
         cookingTime = allTime.getText().toString();
 
-        try {backgroundImage = card_foto_layaut.getImageAlpha();}
+        try {backgroundImage = card_foto_layaut.getDrawable();}
         catch (Exception e) {Toast.makeText(this, "Загрузите фотографию", Toast.LENGTH_SHORT).show();}
 
         difficultyDish = lvl;
@@ -133,33 +138,83 @@ public class CreateCard extends AppCompatActivity {
 
         if(firstBlock(idDish, nameDish, categoryDish, cookingTime, difficultyDish) &&
                 secondBlock(dateForPost,descriptionDish, authorPostDish, descriptionAuthorPost) &&
-                thirdBlock(kitchenDish, timeOnKitchen, starDish, spicyDish)){
+                thirdBlock(kitchenDish, timeOnKitchen, starDish, spicyDish)) {
+
             try {
-                DishModel dishModel = new DishModel(idDish, nameDish, categoryDish, cookingTime, backgroundImage,
-                        difficultyDish, dateForPost, descriptionDish, authorPostDish, descriptionAuthorPost,
-                        kitchenDish, timeOnKitchen, starDish, spicyDish);
 
-                CollectionCloud.commonDishList.add(dishModel);
+                dishModel = new DishModel(idDish, nameDish, categoryDish, cookingTime, backgroundImage, difficultyDish, dateForPost, descriptionDish, authorPostDish, descriptionAuthorPost, kitchenDish, timeOnKitchen, starDish, spicyDish);
 
-//                switch (category){
-//                    case 1: {
-//                        CategoryDishLish.first.add(dishModel); break;}
-//                    case 2: {
-//                        CategoryDishLish.second.add(dishModel); break;}
-//                    case 3: {
-//                        CategoryDishLish.salad.add(dishModel); break;}
-//                    case 4: {
-//                        CategoryDishLish.snack.add(dishModel); break;}
-//                }
+                getCategory();
+                setDishInCategory(nameDish);
+                setDishInCommonAndMyRecipe(nameDish);
 
-                                        CategoryDishLish.first.add(dishModel);
-                                        Toast.makeText(this, String.valueOf(CategoryDishLish.first.size()), Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "Рецепт добавлен", Toast.LENGTH_SHORT).show();
+
             } catch (Exception e){Toast.makeText(this, "Error: don't create", Toast.LENGTH_SHORT).show();}
         }
         else Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();
 
     }
+
+    private void getCategory(){
+        if(category == R.drawable.dish_category_first)  {
+            categoryDishs = 1;
+            categoryModel = CollectionCloud.commonCategoryList.get(0);
+        }
+        else if(category == R.drawable.dish_category_second)  {
+            categoryDishs = 2;
+            categoryModel = CollectionCloud.commonCategoryList.get(1);
+        }
+        else if(category == R.drawable.dish_category_salad)  {
+            categoryDishs = 3;
+            categoryModel = CollectionCloud.commonCategoryList.get(2);
+        }
+        else if(category == R.drawable.dish_category_snacs)  {
+            categoryDishs = 4;
+            categoryModel = CollectionCloud.commonCategoryList.get(3);
+        }
+    }
+
+    private void setDishInCategory(String nameDish){
+        if(categoryModel != null){
+            int flagCategory = 0;
+
+            for(DishModel model: categoryModel.getDishList()){
+                if(model.getNameDish().equals(nameDish)){
+                    flagCategory = 1;
+                }
+            }
+            if(flagCategory == 0) {
+
+                switch (categoryDishs){
+                    case 1: {CategoryDishLish.first.add(dishModel);break;}
+                    case 2: {CategoryDishLish.second.add(dishModel);break;}
+                    case 3: {CategoryDishLish.salad.add(dishModel);break;}
+                    case 4: {CategoryDishLish.snack.add(dishModel);break;}
+                    default:;
+                }
+
+                Toast.makeText(this, "Рецепт добавлен в категорию", Toast.LENGTH_SHORT).show();
+
+            } else Toast.makeText(this, "Такое блюдо уже есть", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setDishInCommonAndMyRecipe(String nameDish){
+        int flagMyRecipe = 0;
+
+        for(DishModel model: CollectionCloud.myRecipeList){
+            if(model.getNameDish().equals(nameDish)){
+                flagMyRecipe = 1;
+            }
+        }
+        if(flagMyRecipe == 0){
+            CollectionCloud.commonDishList.add(dishModel);
+            CollectionCloud.myRecipeList.add(dishModel);
+            Toast.makeText(this, "Рецепт добавлен в общее", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     private boolean firstBlock(int idDish, String nameDish, int categoryDish,  String cookingTime, int difficultyDish){
         if(idDish != 0 && (nameDish != null && !nameDish.isEmpty()) && categoryDish != 0 &&

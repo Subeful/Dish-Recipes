@@ -11,53 +11,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetterInDish {
-    
+
     static Context context = new DescriptionDish().getBaseContext();
         ////1
-    public static void setFirstDish(){
+    public static void setFirstDish(Context contextNow){
 
-        CategoryDishLish.first.add(new DishModel(1, "Московская солянка", R.drawable.dish_category_first,  "1 час", R.drawable.view_dish_global,
+        CategoryDishLish.first.add(new DishModel(1, "Московская солянка", R.drawable.dish_category_first,  "1 час", contextNow.getDrawable(R.drawable.view_dish_global),
                 R.drawable.lvl_4, "1 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Егор \nЯськин", "Администратор \nFood Recipe",
                 "Россия", "50 мин", R.drawable.star_4, R.drawable.pepper_1));
 
-        CategoryDishLish.first.add(new DishModel(2, "Окрошка", R.drawable.dish_category_first,  "30 мин", R.drawable.dish_first_okroshka,
+        CategoryDishLish.first.add(new DishModel(2, "Окрошка", R.drawable.dish_category_first,  "30 мин", contextNow.getDrawable(R.drawable.dish_first_okroshka),
                 R.drawable.lvl_2, "12 июля", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Анна \nШишкина", "Читатель и автор \nFood Recipe",
                 "Россия", "25 мин", R.drawable.star_4_5, R.drawable.pepper_1));
 
-        CategoryDishLish.first.add(new DishModel(3, "Томатный суп", R.drawable.dish_category_first,  "50 мин", R.drawable.dish_first_tomat_soup,
+        CategoryDishLish.first.add(new DishModel(3, "Томатный суп", R.drawable.dish_category_first,  "50 мин", contextNow.getDrawable(R.drawable.dish_first_tomat_soup),
                 R.drawable.lvl_2, "13 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Пётр \nЧинаев", "Читатель и автор \nFood Recipe",
                 "Европейская", "20 мин", R.drawable.star_2, R.drawable.pepper_2));
-        
+
         for(DishModel model: CategoryDishLish.first){
             CollectionCloud.commonDishList.add(model);
         }
 
     }
-    
-    
+
+
 
         ////2
-    public static void setSecondDish(){
+    public static void setSecondDish(Context contextNow){
 
-        CategoryDishLish.second.add(new DishModel(4, "Паста карбонара", R.drawable.dish_category_second,  "30 мин", R.drawable.dish_second_carbonara,
+        CategoryDishLish.second.add(new DishModel(4, "Паста карбонара", R.drawable.dish_category_second,  "30 мин", contextNow.getDrawable(R.drawable.dish_second_carbonara),
                 R.drawable.lvl_2, "22 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Альберт \nЗунин", "Читатель и автор \nFood Recipe",
                 "Итальянская", "30 мин", R.drawable.star_4_5, R.drawable.pepper_1));
 
-        CategoryDishLish.second.add(new DishModel(5, "Картошка в мундире", R.drawable.dish_category_second,  "1.5 часа", R.drawable.dish_second_potato,
+        CategoryDishLish.second.add(new DishModel(5, "Картошка в мундире", R.drawable.dish_category_second,  "1.5 часа", contextNow.getDrawable(R.drawable.dish_second_potato),
                 R.drawable.lvl_1, "19 июня", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Анна \nШишкина", "Читатель и автор \nFood Recipe",
                 "Россия", "25 мин", R.drawable.star_5, R.drawable.pepper_1));
 
-        CategoryDishLish.second.add(new DishModel(6, "Мясная запеканка с овощами", R.drawable.dish_category_second,  "1.5 часа", R.drawable.dish_second_zapecanka,
+        CategoryDishLish.second.add(new DishModel(6, "Мясная запеканка с овощами", R.drawable.dish_category_second,  "1.5 часа", contextNow.getDrawable(R.drawable.dish_second_zapecanka),
                 R.drawable.lvl_2, "13 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Анна \nШишкина", "Читатель и автор \nFood Recipe",
                 "Россия", "20 мин", R.drawable.star_3_5, R.drawable.pepper_2));
-        
-        
+
         for(DishModel model: CategoryDishLish.second){
             CollectionCloud.commonDishList.add(model);
         }
@@ -65,24 +64,24 @@ public class SetterInDish {
     }
 
         ////3
-    public static void setSaladDish(){
+    public static void setSaladDish(Context contextNow){
 
-        CategoryDishLish.salad.add(new DishModel(7, "Оливье", R.drawable.dish_category_salad,  "30 мин", R.drawable.dish_salad_olive,
+        CategoryDishLish.salad.add(new DishModel(7, "Оливье", R.drawable.dish_category_salad,  "30 мин", contextNow.getDrawable(R.drawable.dish_salad_olive),
                 R.drawable.lvl_1, "29 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Альберт \nЗунин", "Читатель и автор \nFood Recipe",
                 "Россия", "20 мин", R.drawable.star_5, R.drawable.pepper_1));
 
-        CategoryDishLish.salad.add(new DishModel(8, "Салат мимоза", R.drawable.dish_category_salad,  "50 мин", R.drawable.dish_salad_mimoza,
+        CategoryDishLish.salad.add(new DishModel(8, "Салат мимоза", R.drawable.dish_category_salad,  "50 мин", contextNow.getDrawable(R.drawable.dish_salad_mimoza),
                 R.drawable.lvl_2, "23 июля", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Анна \nШишкина", "Читатель и автор \nFood Recipe",
                 "Россия", "20 мин", R.drawable.star_4_5, R.drawable.pepper_1));
 
-        CategoryDishLish.salad.add(new DishModel(9, "Салат летний", R.drawable.dish_category_salad,  "5 мин", R.drawable.dish_salad_summer,
+        CategoryDishLish.salad.add(new DishModel(9, "Салат летний", R.drawable.dish_category_salad,  "5 мин", contextNow.getDrawable(R.drawable.dish_salad_summer),
                 R.drawable.lvl_1, "13 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Альберт \nЗунин", "Читатель и автор \nFood Recipe",
                 "Россия", "5 мин", R.drawable.star_5, R.drawable.pepper_1));
 
-        CategoryDishLish.salad.add(new DishModel(10, "Селёдка под шубой", R.drawable.dish_category_salad,  "45 мин", R.drawable.dish_salad_seledka,
+        CategoryDishLish.salad.add(new DishModel(10, "Селёдка под шубой", R.drawable.dish_category_salad,  "45 мин", contextNow.getDrawable(R.drawable.dish_salad_seledka),
                 R.drawable.lvl_2, "30 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Пётр \nЧинаев", "Читатель и автор \nFood Recipe",
                 "Интернацинальная", "30 мин", R.drawable.star_4, R.drawable.pepper_1));
@@ -90,27 +89,28 @@ public class SetterInDish {
         for(DishModel model: CategoryDishLish.salad){
             CollectionCloud.commonDishList.add(model);
         }
+
     }
 
         ////4
-    public static void setSnackDish(){
+    public static void setSnackDish(Context contextNow){
 
-        CategoryDishLish.snack.add(new DishModel(11, "Бутерброды \"народные\"", R.drawable.dish_category_snacs,  "5 мин", R.drawable.dish_snacks_buter_narod,
+        CategoryDishLish.snack.add(new DishModel(11, "Бутерброды \"народные\"", R.drawable.dish_category_snacs,  "5 мин", contextNow.getDrawable(R.drawable.dish_snacks_buter_narod),
                 R.drawable.lvl_1, "13 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Пётр \nЧинаев", "Читатель и автор \nFood Recipe",
                 "Россия", "5 мин", R.drawable.star_5, R.drawable.pepper_1));
 
-        CategoryDishLish.snack.add(new DishModel(12, "Грибы в беконе", R.drawable.dish_category_snacs,  "30 мин", R.drawable.dish_snacks_grib_in_becon,
+        CategoryDishLish.snack.add(new DishModel(12, "Грибы в беконе", R.drawable.dish_category_snacs,  "30 мин", contextNow.getDrawable(R.drawable.dish_snacks_grib_in_becon),
                 R.drawable.lvl_3, "13 июля", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Альберт \nЗунин", "Читатель и автор \nFood Recipe",
                 "Россия", "25 мин", R.drawable.star_4_5, R.drawable.pepper_2));
 
-        CategoryDishLish.snack.add(new DishModel(13, "Кимчи из баклажана", R.drawable.dish_category_snacs,  "76 часов", R.drawable.dish_snacks_kimchi_in_baclajan,
+        CategoryDishLish.snack.add(new DishModel(13, "Кимчи из баклажана", R.drawable.dish_category_snacs,  "76 часов", contextNow.getDrawable(R.drawable.dish_snacks_kimchi_in_baclajan),
                 R.drawable.lvl_3, "10 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Анна \nШишкина", "Читатель и автор \nFood Recipe",
                 "Азия", "30 мин", R.drawable.star_1, R.drawable.pepper_4));
 
-        CategoryDishLish.snack.add(new DishModel(14, "Сырные колечки", R.drawable.dish_category_snacs,  "25 мин", R.drawable.dish_snaks_chees_kolco,
+        CategoryDishLish.snack.add(new DishModel(14, "Сырные колечки", R.drawable.dish_category_snacs,  "25 мин", contextNow.getDrawable(R.drawable.dish_snaks_chees_kolco),
                 R.drawable.lvl_2, "8 августа", "The purple elephant danced a waltz with the invisible rhinoceros. The clock tower sang opera while the moon ate cheese. My shoe is a sentient being and it wants to go to the beach. The tree whispered secrets to the wind, who then told them to the clouds. The spoon is angry because it can't eat the soup.",
                 "Анна \nШишкина", "Читатель и автор \nFood Recipe",
                 "Америка", "20 мин", R.drawable.star_4, R.drawable.pepper_1));
@@ -120,37 +120,32 @@ public class SetterInDish {
         }
 
     }
-
-    public static List<DishModel> setBakeryDish(){
-        List<DishModel> dishList = new ArrayList<>();
-        return dishList;
-    }
-
-    public static List<DishModel> setSouseDish(){
-        List<DishModel> dishList = new ArrayList<>();
-        return dishList;
-    }
-
-    public static List<DishModel> setPrepareDish(){
-        List<DishModel> dishList = new ArrayList<>();
-        return dishList;
-    }
-
-    public static List<DishModel> setDrinksDish(){
-        List<DishModel> dishList = new ArrayList<>();
-        return dishList;
-    }
-
-    public static List<DishModel> setDessertDish(){
-        List<DishModel> dishList = new ArrayList<>();
-        return dishList;
-    }
-
-
-    public static List<DishModel> setGarnishDish(){
-        List<DishModel> dishList = new ArrayList<>();
-        return dishList;
-    }
+//
+//    public static void setBakeryDish(){
+//
+//    }
+//
+//    public static void setSouseDish(){
+//
+//    }
+//
+//    public static void setPrepareDish(){
+//
+//    }
+//
+//    public static void setDrinksDish(){
+//
+//    }
+//
+//    public static void setDessertDish(){
+//
+//    }
+//
+//    public static void setGarnishDish(){
+//
+//    }
+//
+//
 
     public static List<SeasonProductModel> setSeasonProduct(){
         List<SeasonProductModel> list = new ArrayList<>();
