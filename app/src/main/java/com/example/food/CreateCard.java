@@ -24,6 +24,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.food.Help.CategoryDishLish;
 import com.example.food.Help.CollectionCloud;
 import com.example.food.model.DishModel;
 
@@ -140,15 +141,19 @@ public class CreateCard extends AppCompatActivity {
 
                 CollectionCloud.commonDishList.add(dishModel);
 
-                String categores = "null";
-                switch (category){
-                    case 1: {categores = "Первые блюда"; break;}
-                    case 2: {categores = "Вторые блюда"; break;}
-                    case 3: {categores = "Салаты"; break;}
-                    case 4: {categores = "Закуски"; break;}
-                }
+//                switch (category){
+//                    case 1: {
+//                        CategoryDishLish.first.add(dishModel); break;}
+//                    case 2: {
+//                        CategoryDishLish.second.add(dishModel); break;}
+//                    case 3: {
+//                        CategoryDishLish.salad.add(dishModel); break;}
+//                    case 4: {
+//                        CategoryDishLish.snack.add(dishModel); break;}
+//                }
 
-
+                                        CategoryDishLish.first.add(dishModel);
+                                        Toast.makeText(this, String.valueOf(CategoryDishLish.first.size()), Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, "Рецепт добавлен", Toast.LENGTH_SHORT).show();
             } catch (Exception e){Toast.makeText(this, "Error: don't create", Toast.LENGTH_SHORT).show();}
         }
