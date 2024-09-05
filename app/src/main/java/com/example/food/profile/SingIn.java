@@ -1,8 +1,6 @@
-package com.example.food;
+package com.example.food.profile;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -13,28 +11,34 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.food.profile.SingIn;
+import com.example.food.Basket;
+import com.example.food.Global;
+import com.example.food.MainActivity;
+import com.example.food.R;
+import com.example.food.Season;
+import com.example.food.Setting;
 
-public class Setting extends AppCompatActivity {
+public class SingIn extends AppCompatActivity {
 
-    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_sing_in);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
     }
-
-
-
-
-
+    public void createAccount(View v){
+        try {
+            Intent intent = new Intent(this, CreateAccount.class);
+            startActivity(intent);
+            finish();
+        }catch (Exception e){
+            Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
     public void goBasket(View v){
         try {
             Intent intent = new Intent(this, Basket.class);
@@ -54,10 +58,9 @@ public class Setting extends AppCompatActivity {
             startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
-    public void goSetting(View v){}
-    public void goLovers(View v){
+    public void goSetting(View v){
         try {
-            Intent intent = new Intent(this, LoverDish.class);
+            Intent intent = new Intent(this, Setting.class);
             startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
@@ -65,24 +68,6 @@ public class Setting extends AppCompatActivity {
         try {
             Intent intent = new Intent(this, Season.class);
             startActivity(intent);
-        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }public void goMyDish(View v){
-        try {
-            Intent intent = new Intent(this, MyRecipe.class);
-            startActivity(intent);
-            finish();
-        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }
-    public void exitApp(View v){
-        try {
-            finishAffinity();
-        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }
-    public void goSingIn(View v){
-        try {
-            Intent intent = new Intent(this, SingIn.class);
-            startActivity(intent);
-            finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
 }

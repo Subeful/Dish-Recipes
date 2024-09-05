@@ -29,9 +29,12 @@ import com.example.food.Help.SetterInDish;
 import com.example.food.model.DishModel;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -180,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, "error in recycler", Toast.LENGTH_SHORT).show();
         }
+
     }
     @SuppressLint("UseCompatLoadingForDrawables")
     private void setCategoryListFull(){
