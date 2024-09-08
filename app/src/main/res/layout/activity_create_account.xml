@@ -163,6 +163,7 @@
             android:background="@drawable/sing_in_input_panel">
 
             <EditText
+                android:id="@+id/userName_craeate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
@@ -186,6 +187,7 @@
             android:background="@drawable/sing_in_input_panel">
 
             <EditText
+                android:id="@+id/userEmail_craeate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
@@ -209,6 +211,7 @@
             android:background="@drawable/sing_in_input_panel">
 
             <EditText
+                android:id="@+id/userPassword_craeate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
@@ -223,13 +226,15 @@
         </LinearLayout>
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/userCheckBox_craeate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:onClick="getFlag"
             android:text="Я ознакомлен(-а) с Политикой конфиденциальности"
             android:textColor="@color/white"
-            android:textSize="10dp"/>
+            android:textSize="10dp"
+            tools:ignore="TextSizeCheck" />
 
 
         <ImageButton
@@ -237,7 +242,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/sing_in_button" />
+            android:background="@drawable/create_button"
+            android:contentDescription="@string/app_name"
+            android:onClick="createUserAccount" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -262,11 +269,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="logIn"
                 android:layout_weight="1"
                 android:fontFamily="@font/inter"
+                android:onClick="logIn"
                 android:text=" Log in"
-                android:textColor="#1F67ED" />
+                android:textColor="#1F67ED"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 

@@ -60,8 +60,8 @@ public class CreateCard extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-        });
-        getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
+        });getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
+
         card_add_foto = findViewById(R.id.card_add_foto);
         setUI();
 

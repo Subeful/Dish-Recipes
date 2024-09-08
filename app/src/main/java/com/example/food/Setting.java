@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.food.profile.MyAccount;
 import com.example.food.profile.SingIn;
 
 public class Setting extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class Setting extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-        });
+        });getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
         getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
     }
 

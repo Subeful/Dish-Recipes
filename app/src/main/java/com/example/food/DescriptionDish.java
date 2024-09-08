@@ -71,15 +71,10 @@ public class DescriptionDish extends AppCompatActivity {
     public void inLove(View v){
         int x = 0;
         try {
-
             if(dishModel.getFlagOnLove() == 0){
-
                 isInLove(v, x);
-
             }else if(dishModel.getFlagOnLove() == 1){
-
                 isNotInLove(v, x);
-
             }
         }catch (Exception e){Toast.makeText(context, "Error: full 'in live'", Toast.LENGTH_SHORT).show();}
 

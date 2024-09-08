@@ -163,6 +163,7 @@
             android:background="@drawable/sing_in_input_panel">
 
             <EditText
+                android:id="@+id/sing_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
@@ -186,6 +187,7 @@
             android:background="@drawable/sing_in_input_panel">
 
             <EditText
+                android:id="@+id/sing_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
@@ -205,7 +207,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
-            android:background="@drawable/sing_in_button" />
+            android:background="@drawable/sing_in_button"
+            android:contentDescription="@string/app_name"
+            android:onClick="singIn" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -223,12 +227,13 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:onClick="createAccount"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/inter"
+                android:onClick="createAccount"
                 android:text=" Create account"
-                android:textColor="#1F67ED" />
+                android:textColor="#1F67ED"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 
