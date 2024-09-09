@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -23,10 +24,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food.Help.CategoryDishLish;
 import com.example.food.Help.CollectionCloud;
+import com.example.food.Help.SaveUsersAccount;
 import com.example.food.adapter.CategoryAdapter;
 import com.example.food.model.CategoryModel;
 import com.example.food.Help.SetterInDish;
 import com.example.food.model.DishModel;
+import com.example.food.profile.SingIn;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -65,19 +68,48 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
 
 
+
+        setUI();
+        setDataInLists();
+
+        setApplicationRecycle(categoryListNow);
+
+
+
+
+    }
+    private void setDataInLists(){
+        try {
+            setBeginDishList();
+            setCategoryListFull();
+            categoryListNow.addAll(CollectionCloud.commonCategoryList);
+        }catch (Exception e){Toast.makeText(this, "Error: set lists", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void setUI(){
         try {
             categoryListView = findViewById(R.id.categoryColumn);
             getCategorySearch = findViewById(R.id.getCategorySearch);
             clearCategorySearch = findViewById(R.id.clearCategorySearch);
-            setBeginDishList();
-            setCategoryListFull();
-            categoryListNow.addAll(CollectionCloud.commonCategoryList);
-            setApplicationRecycle(categoryListNow);
             setTextDescription();
-        }catch (Exception e){Toast.makeText(this, "Error: full main", Toast.LENGTH_SHORT).show();}
-
-
+            setAvaIfHaveAccount();
+        }catch (Exception e){Toast.makeText(this, "Error: set UI or TextDescription", Toast.LENGTH_SHORT).show();}
     }
+
+    public void goToAva(View v){
+        try {
+            Intent intent = new Intent(this, SingIn.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void setAvaIfHaveAccount(){
+        if(SaveUsersAccount.usersAccount != null) {
+            ImageView main_ava = findViewById(R.id.main_ava);
+            main_ava.setImageURI(SaveUsersAccount.usersAccount.getUserPhoto());
+        }
+    }
+
     private void setBeginDishList(){
         try {
             if(CollectionCloud.flagCommonCategoryList == 0){
@@ -119,21 +151,73 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean searchCategory(View v){
-        String category = getCategorySearch.getText().toString().toLowerCase().trim();
+        try {
+            String category = getCategorySearch.getText().toString().toLowerCase().trim();
 
-        if(!category.isEmpty()){
-            for(CategoryModel model: CollectionCloud.commonCategoryList){
-                if(model.getName().toLowerCase().equals(category)) {
-                    setCategoryListNow(model);
-                    setApplicationRecycle(categoryListNow);
-                    return true;
+            if(!category.isEmpty()){
+                for(CategoryModel model: CollectionCloud.commonCategoryList){
+                    if(model.getName().toLowerCase().equals(category)) {
+                        setCategoryListNow(model);
+                        setApplicationRecycle(categoryListNow);
+                        return true;
+                    }
                 }
-            }
-            Toast.makeText(this, "Такой категории нет", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Такой категории нет", Toast.LENGTH_SHORT).show();
 
-        }else Toast.makeText(this, "Введите категорию", Toast.LENGTH_SHORT).show();
+            }else Toast.makeText(this, "Введите категорию", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){Toast.makeText(this, "Error: search", Toast.LENGTH_SHORT).show();}
         return false;
     }
+
+    private void setCategoryListNow(CategoryModel model){
+        categoryListNow.clear();
+        categoryListNow.add(model);
+    }
+
+    private void setApplicationRecycle(LinkedList<CategoryModel> listApp) {
+        try {
+            GridLayoutManager layoutManagers = new GridLayoutManager(this, 2);
+            categoryListView.setLayoutManager(layoutManagers);
+            categoryListView.setLayoutManager(layoutManagers);
+
+            categoryAdapter = new CategoryAdapter(this, listApp);
+            categoryListView.setAdapter(categoryAdapter);
+        } catch (Exception e) {
+            Toast.makeText(this, "Error: set Recycler", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void setCategoryListFull(){
+        try {
+            CollectionCloud.commonCategoryList.clear();
+            CollectionCloud.commonCategoryList.add(new CategoryModel(1, getDrawable(R.drawable.category_first),
+                    "Первые блюда", CategoryDishLish.first));
+            CollectionCloud.commonCategoryList.add(new CategoryModel(2, getDrawable(R.drawable.category_second),
+                    "Вторые блюда", CategoryDishLish.second));
+            CollectionCloud.commonCategoryList.add(new CategoryModel(3, getDrawable(R.drawable.category_salat),
+                    "Салаты", CategoryDishLish.salad));
+            CollectionCloud.commonCategoryList.add(new CategoryModel(4, getDrawable(R.drawable.category_snacks),
+                    "Закуски", CategoryDishLish.snack));
+            CollectionCloud.commonCategoryList.add(new CategoryModel(5, getDrawable(R.drawable.category_cake),
+                    "Выпечка", CategoryDishLish.a1));
+            CollectionCloud.commonCategoryList.add(new CategoryModel(6, getDrawable(R.drawable.category_sous),
+                    "Соусы и маринады", CategoryDishLish.a2));
+            CollectionCloud.commonCategoryList.add(new CategoryModel(7, getDrawable(R.drawable.category_zacuski),
+                    "Заготовки", CategoryDishLish.a3));
+            CollectionCloud.commonCategoryList.add(new CategoryModel(8, getDrawable(R.drawable.category_drinks),
+                    "Напитки", CategoryDishLish.a4));
+            CollectionCloud.commonCategoryList.add(new CategoryModel(10, getDrawable(R.drawable.category_garnir),
+                    "Гарниры", CategoryDishLish.a5));
+            CollectionCloud.commonCategoryList.add(new CategoryModel(9, getDrawable(R.drawable.category_desert),
+                    "Десерты", CategoryDishLish.a6));
+        } catch (Exception e) {Toast.makeText(this, "Error: set commonCategoryList \n MainActivity", Toast.LENGTH_SHORT).show();}
+    }
+
+
+
+
 
     public void goBasket(View v){
         try {
@@ -161,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
+
     public void goSeson(View v){
         try {
             Intent intent = new Intent(this, Season.class);
@@ -168,51 +253,7 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
 
-    private void setCategoryListNow(CategoryModel model){
-        categoryListNow.clear();
-        categoryListNow.add(model);
-    }
-    private void setApplicationRecycle(LinkedList<CategoryModel> listApp) {
-        try {
-            GridLayoutManager layoutManagers = new GridLayoutManager(this, 2);
-            categoryListView.setLayoutManager(layoutManagers);
-            categoryListView.setLayoutManager(layoutManagers);
-
-            categoryAdapter = new CategoryAdapter(this, listApp);
-            categoryListView.setAdapter(categoryAdapter);
-        } catch (Exception e) {
-            Toast.makeText(this, "error in recycler", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private void setCategoryListFull(){
-            try {
-                CollectionCloud.commonCategoryList.clear();
-                CollectionCloud.commonCategoryList.add(new CategoryModel(1, getDrawable(R.drawable.category_first),
-                        "Первые блюда", CategoryDishLish.first));
-                CollectionCloud.commonCategoryList.add(new CategoryModel(2, getDrawable(R.drawable.category_second),
-                        "Вторые блюда", CategoryDishLish.second));
-                CollectionCloud.commonCategoryList.add(new CategoryModel(3, getDrawable(R.drawable.category_salat),
-                        "Салаты", CategoryDishLish.salad));
-                CollectionCloud.commonCategoryList.add(new CategoryModel(4, getDrawable(R.drawable.category_snacks),
-                        "Закуски", CategoryDishLish.snack));
-                CollectionCloud.commonCategoryList.add(new CategoryModel(5, getDrawable(R.drawable.category_cake),
-                        "Выпечка", CategoryDishLish.a1));
-                CollectionCloud.commonCategoryList.add(new CategoryModel(6, getDrawable(R.drawable.category_sous),
-                        "Соусы и маринады", CategoryDishLish.a2));
-                CollectionCloud.commonCategoryList.add(new CategoryModel(7, getDrawable(R.drawable.category_zacuski),
-                        "Заготовки", CategoryDishLish.a3));
-                CollectionCloud.commonCategoryList.add(new CategoryModel(8, getDrawable(R.drawable.category_drinks),
-                        "Напитки", CategoryDishLish.a4));
-                CollectionCloud.commonCategoryList.add(new CategoryModel(10, getDrawable(R.drawable.category_garnir),
-                        "Гарниры", CategoryDishLish.a5));
-                CollectionCloud.commonCategoryList.add(new CategoryModel(9, getDrawable(R.drawable.category_desert),
-                        "Десерты", CategoryDishLish.a6));
-            } catch (Exception e) {Toast.makeText(this, "Error: set commonCategoryList \n MainActivity", Toast.LENGTH_SHORT).show();}
-        }
-
-    }
+}
 
 
 

@@ -3,4 +3,6 @@
     <string name="text_1">Войдите или\nзарегистрируйтесь</string>
     <string name="text_2">Личный профиль</string>
 
+    <string name="font_name_1">font/inter_semibold.xml</string>
+
 </resources>

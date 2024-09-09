@@ -17,15 +17,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <androidx.cardview.widget.CardView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            app:cardCornerRadius="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/avatarka" />
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/main_ava"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:contentDescription="@string/app_name"
+                android:onClick="goToAva"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/avatarka" />
+        </androidx.cardview.widget.CardView>
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -170,12 +185,12 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="update"
-            android:src="@drawable/update_love"
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="20dp"
             android:background="@android:color/transparent"
-            />
+            android:contentDescription="@string/app_name"
+            android:onClick="update"
+            android:src="@drawable/update_love" />
     </FrameLayout>
 
 

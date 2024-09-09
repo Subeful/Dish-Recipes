@@ -97,6 +97,7 @@ public class CreateAccount extends AppCompatActivity {
         SaveUsersAccount.usersList.add(SaveUsersAccount.usersAccount);
         Toast.makeText(this, "Аккаунт сохранен", Toast.LENGTH_SHORT).show();
     }
+    
 
     private boolean getData(){
         int isGood = 0;

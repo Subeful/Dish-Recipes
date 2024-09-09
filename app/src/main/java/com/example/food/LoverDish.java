@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,9 +18,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food.Help.CollectionCloud;
+import com.example.food.Help.SaveUsersAccount;
 import com.example.food.adapter.DishAdapter;
 import com.example.food.adapter.DishLoveAdapter;
 import com.example.food.model.DishModel;
+import com.example.food.profile.IfNotAccount;
+import com.example.food.profile.SingIn;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -45,13 +49,40 @@ public class LoverDish extends AppCompatActivity {
 
         getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
 
+        ifNotAccount();
+
         context = LoverDish.this;
         try {
 
             loverDishRecycler = findViewById(R.id.loverDishRecycler);
             setApplicationRecycle(CollectionCloud.loverDishList);
 
+            setAvaIfHaveAccount();
+
         }catch (Exception e){Toast.makeText(this, "error recycler", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void ifNotAccount(){
+        if(SaveUsersAccount.usersAccount == null){
+            Intent intent = new Intent(this, IfNotAccount.class);
+            intent.putExtra("activity", "Избранное доступно");
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    public void goToAva(View v){
+        try {
+            Intent intent = new Intent(this, SingIn.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void setAvaIfHaveAccount(){
+        if(SaveUsersAccount.usersAccount != null) {
+            ImageView main_ava = findViewById(R.id.main_ava);
+            main_ava.setImageURI(SaveUsersAccount.usersAccount.getUserPhoto());
+        }
     }
 
     public void setApplicationRecycle(LinkedList<DishModel> listApp) {
@@ -68,6 +99,7 @@ public class LoverDish extends AppCompatActivity {
     public void goBasket(View v){
         try {
             Intent intent = new Intent(this, Basket.class);
+            intent.putExtra("activity", "Корзина доступна");
             startActivity(intent);
         }catch (Exception e){
             Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}

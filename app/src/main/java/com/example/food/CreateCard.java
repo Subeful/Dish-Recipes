@@ -27,8 +27,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.food.Help.CategoryDishLish;
 import com.example.food.Help.CollectionCloud;
+import com.example.food.Help.SaveUsersAccount;
 import com.example.food.model.CategoryModel;
 import com.example.food.model.DishModel;
+import com.example.food.profile.IfNotAccount;
+import com.example.food.profile.SingIn;
 
 import java.util.LinkedList;
 
@@ -65,6 +68,9 @@ public class CreateCard extends AppCompatActivity {
         card_add_foto = findViewById(R.id.card_add_foto);
         setUI();
 
+        ifNotAccount();
+        setAvaIfHaveAccount();
+
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if (result.getResultCode() == RESULT_OK) {
                 Intent data = result.getData();
@@ -88,6 +94,29 @@ public class CreateCard extends AppCompatActivity {
         findViewById(R.id.card_lvl).setOnClickListener(view -> {showPopupMenuLvl(view);});
 
 
+    }
+
+    private void ifNotAccount(){
+        if(SaveUsersAccount.usersAccount == null){
+            Intent intent = new Intent(this, IfNotAccount.class);
+            intent.putExtra("activity", "Создание рецепта доступно");
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    public void goToAva(View v){
+        try {
+            Intent intent = new Intent(this, SingIn.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void setAvaIfHaveAccount(){
+        if(SaveUsersAccount.usersAccount != null) {
+            ImageView main_ava = findViewById(R.id.main_ava);
+            main_ava.setImageURI(SaveUsersAccount.usersAccount.getUserPhoto());
+        }
     }
 
     private void setUI(){
@@ -431,6 +460,7 @@ public class CreateCard extends AppCompatActivity {
     public void goBasket (View v){
         try {
             Intent intent = new Intent(this, Basket.class);
+            intent.putExtra("activity", "Корзина доступна");
             startActivity(intent);
         } catch (Exception e) {
             Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();

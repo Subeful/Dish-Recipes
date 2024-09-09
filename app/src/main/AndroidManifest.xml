@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Food"
         tools:targetApi="31">
         <activity
+            android:name=".profile.IfNotAccount"
+            android:exported="false" />
+        <activity
             android:name=".profile.MyAccount"
             android:exported="false" />
         <activity

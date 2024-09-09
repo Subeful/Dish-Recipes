@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -40,13 +41,21 @@ public class SingIn extends AppCompatActivity {
             return insets;
         });getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
 
-        ifNotAccount();
 
-        sing_name = findViewById(R.id.sing_name);
-        sing_password = findViewById(R.id.sing_password);
+        ifHaveOrNoAccount();
+        setUI();
+
         
 
     }
+
+    private void setUI(){
+        sing_name = findViewById(R.id.sing_name);
+        sing_password = findViewById(R.id.sing_password);
+    }
+
+
+
 
     private void getDataOfUsers(){
         name = sing_name.getText().toString();
@@ -80,10 +89,9 @@ public class SingIn extends AppCompatActivity {
         else Toast.makeText(this, "Аккаунт не найден", Toast.LENGTH_SHORT).show();
     }
 
-
-    private void ifNotAccount(){
-        if(SaveUsersAccount.usersList.isEmpty())
-            startActivity(new Intent(this, CreateAccount.class));
+    private void ifHaveOrNoAccount(){
+        if(SaveUsersAccount.usersAccount != null) startActivity(new Intent(this, MyAccount.class));
+        else if(SaveUsersAccount.usersList.isEmpty()) startActivity(new Intent(this, CreateAccount.class));
     }
 
     public void createAccount(View v){

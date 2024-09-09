@@ -1,11 +1,14 @@
 package com.example.food;
 
+import static com.example.food.Help.SaveUsersAccount.usersAccount;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,8 +20,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food.Help.CollectionCloud;
+import com.example.food.Help.SaveUsersAccount;
 import com.example.food.adapter.DishLoveAdapter;
 import com.example.food.model.DishModel;
+import com.example.food.profile.IfNotAccount;
+import com.example.food.profile.SingIn;
 
 import java.util.LinkedList;
 
@@ -40,6 +46,8 @@ public class MyRecipe extends AppCompatActivity {
         });
         getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
 
+        ifNotAccount();
+
         context = MyRecipe.this;
         try {
 
@@ -47,7 +55,31 @@ public class MyRecipe extends AppCompatActivity {
 
             setApplicationRecycle(CollectionCloud.myRecipeList);
 
+            setAvaOfUsers();
+
         }catch (Exception e){Toast.makeText(this, "error recycler", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void setAvaOfUsers () {
+        if (usersAccount  != null){
+            ImageView main_ava = findViewById(R.id.main_ava);
+            main_ava.setImageURI(usersAccount.getUserPhoto());
+        }
+    }
+    private void ifNotAccount(){
+        if(SaveUsersAccount.usersAccount == null){
+            Intent intent = new Intent(this, IfNotAccount.class);
+            intent.putExtra("activity", "Мои рецепты доступны");
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    public void goToAva(View v){
+        try {
+            Intent intent = new Intent(this, SingIn.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
 
     public void setApplicationRecycle(LinkedList<DishModel> listApp) {

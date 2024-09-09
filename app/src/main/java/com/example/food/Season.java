@@ -1,10 +1,13 @@
 package com.example.food;
 
+import static com.example.food.Help.SaveUsersAccount.usersAccount;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -21,6 +24,7 @@ import com.example.food.adapter.DishLoveAdapter;
 import com.example.food.adapter.ProductAdapter;
 import com.example.food.model.DishModel;
 import com.example.food.model.SeasonProductModel;
+import com.example.food.profile.SingIn;
 
 import java.util.LinkedList;
 
@@ -48,9 +52,24 @@ public class Season extends AppCompatActivity {
             productRecycler = findViewById(R.id.productRecycler);
             CollectionCloud.seasonProductList.addAll(SetterInDish.setSeasonProduct());
             setApplicationRecycle(CollectionCloud.seasonProductList);
+            setAvaOfUsers();
 
         }catch (Exception e){
             Toast.makeText(this, "error recycler", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void setAvaOfUsers () {
+        if(usersAccount != null){
+            ImageView main_ava = findViewById(R.id.main_ava);
+            main_ava.setImageURI(usersAccount.getUserPhoto());
+        }
+    }
+
+    public void goToAva(View v){
+        try {
+            Intent intent = new Intent(this, SingIn.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
 
     public void setApplicationRecycle(LinkedList<SeasonProductModel> listApp) {

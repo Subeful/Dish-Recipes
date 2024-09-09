@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,9 +23,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food.Help.CategoryDishLish;
+import com.example.food.Help.SaveUsersAccount;
 import com.example.food.adapter.DishAdapter;
 import com.example.food.model.CategoryModel;
 import com.example.food.model.DishModel;
+import com.example.food.profile.SingIn;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -64,6 +68,8 @@ public class DishActivity extends AppCompatActivity {
             setDishListFull();
             dishListNow.addAll(dishListFull);
             setApplicationRecycle(dishListNow);
+
+            setAvaIfHaveAccount();
 
         }catch (Exception e){Toast.makeText(this, "Error: full dish Recycler", Toast.LENGTH_SHORT).show();}
 
@@ -106,6 +112,20 @@ public class DishActivity extends AppCompatActivity {
 
         }catch (Exception e){
             Toast.makeText(this, "Error: getIntent list \n DishActivity", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void goToAva(View v){
+        try {
+            Intent intent = new Intent(this, SingIn.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void setAvaIfHaveAccount(){
+        if(SaveUsersAccount.usersAccount != null) {
+            ImageView main_ava = findViewById(R.id.main_ava);
+            main_ava.setImageURI(SaveUsersAccount.usersAccount.getUserPhoto());
         }
     }
 

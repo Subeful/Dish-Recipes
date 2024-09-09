@@ -143,231 +143,260 @@
             tools:ignore="TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="240dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="15dp"
-        android:background="@drawable/account_main"
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/LLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/inter_semibold"
-            android:gravity="center"
-            android:text="Мой профиль"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="132dp"
-            android:layout_height="132dp"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center">
-
-            <FrameLayout
-                android:id="@+id/card_foto"
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="240dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/account_main"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-                <androidx.cardview.widget.CardView
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:text="Мой профиль"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="132dp"
                     android:layout_height="132dp"
-                    app:cardCornerRadius="20dp"
-                    android:background="@android:color/transparent"
-                    tools:ignore="MissingConstraints">
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center">
 
-                    <ImageView
-                        android:id="@+id/account_foto"
-                        android:tag="1"
-                        android:layout_width="132dp"
-                        android:layout_height="132dp"
+                    <FrameLayout
+                        android:id="@+id/card_foto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="132dp"
+                            android:layout_height="132dp"
+                            app:cardCornerRadius="20dp"
+                            android:background="@android:color/transparent"
+                            tools:ignore="MissingConstraints">
+
+                            <ImageView
+                                android:id="@+id/account_foto"
+                                android:tag="1"
+                                android:layout_width="132dp"
+                                android:layout_height="132dp"
+                                android:layout_gravity="center"
+                                android:scaleType="centerCrop"
+                                android:background="@drawable/account_ava"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </FrameLayout>
+
+                    <ImageButton
+                        android:id="@+id/account_add_foto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/account_ava"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/account_add_ava"
+                        android:contentDescription="@string/app_name"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintEnd_toEndOf="@+id/card_foto"
+                        tools:ignore="TouchTargetSizeCheck" />
 
-                </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </FrameLayout>
 
-            <ImageButton
-                android:id="@+id/account_add_foto"
+
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:tag="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:text="Пользователь #1"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/account_dop"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/inter_extralight"
+                    android:text="Статус:"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/user_state"
+                    android:tag="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="-3dp"
+                    android:fontFamily="@font/inter"
+                    android:text="Пользователь"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter_extralight"
+                    android:text="Почта:"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/user_mail"
+                    android:tag="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="-3dp"
+                    android:fontFamily="@font/inter"
+                    android:text="test@mail.ru"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter_extralight"
+                    android:text="Пол:"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/user_gender"
+                    android:tag="5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="-3dp"
+                    android:fontFamily="@font/inter"
+                    android:text="Установить"
+                    android:textColor="#2584F0"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter_extralight"
+                    android:text="Дата рождения:"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/user_dateOfBirth"
+                    android:tag="6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="-3dp"
+                    android:fontFamily="@font/inter"
+                    android:text="Установить"
+                    android:textColor="#2584F0"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/inter_extralight"
+                    android:text="Телефон:"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/user_phoneNamber"
+                    android:tag="7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="-3dp"
+                    android:fontFamily="@font/inter"
+                    android:text="Установить"
+                    android:textColor="#2584F0"
+                    android:textSize="16sp" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/account_edit"
+                    android:contentDescription="@string/app_name"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+
+            </LinearLayout>
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/account_add_ava"
+                android:layout_margin="15dp"
+                android:background="@drawable/out_account"
                 android:contentDescription="@string/app_name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/card_foto"
+                android:onClick="exitAccount"
                 tools:ignore="TouchTargetSizeCheck" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
+    </ScrollView>
 
-
-
-        <TextView
-            android:id="@+id/user_name"
-            android:tag="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/inter_semibold"
-            android:gravity="center"
-            android:text="Пользователь #1"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="340dp"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/account_dop"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/inter_extralight"
-            android:text="Статус:"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-        <TextView
-            android:id="@+id/user_state"
-            android:tag="3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="-3dp"
-            android:fontFamily="@font/inter"
-            android:text="Пользователь"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/inter_extralight"
-            android:text="Почта:"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-        <TextView
-            android:id="@+id/user_mail"
-            android:tag="4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="-3dp"
-            android:fontFamily="@font/inter"
-            android:text="Установить"
-            android:textColor="#2584F0"
-            android:textSize="16sp" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/inter_extralight"
-            android:text="Пол:"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-        <TextView
-            android:id="@+id/user_gender"
-            android:tag="5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="-3dp"
-            android:fontFamily="@font/inter"
-            android:text="Установить"
-            android:textColor="#2584F0"
-            android:textSize="16sp" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/inter_extralight"
-            android:text="Дата рождения:"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-        <TextView
-            android:id="@+id/user_dateOfBirth"
-            android:tag="6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="-3dp"
-            android:fontFamily="@font/inter"
-            android:text="Установить"
-            android:textColor="#2584F0"
-            android:textSize="16sp" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/inter_extralight"
-            android:text="Телефон:"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-        <TextView
-            android:id="@+id/user_phoneNamber"
-            android:tag="7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="-3dp"
-            android:fontFamily="@font/inter"
-            android:text="Установить"
-            android:textColor="#2584F0"
-            android:textSize="16sp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/account_edit"
-            android:contentDescription="@string/app_name"
-            tools:ignore="TouchTargetSizeCheck" />
-
-
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

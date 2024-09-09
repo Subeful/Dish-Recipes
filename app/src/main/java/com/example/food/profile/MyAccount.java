@@ -25,6 +25,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.food.Basket;
 import com.example.food.Global;
+import com.example.food.Help.SaveUsersAccount;
 import com.example.food.MainActivity;
 import com.example.food.R;
 import com.example.food.Season;
@@ -78,19 +79,40 @@ public class MyAccount extends AppCompatActivity {
 
     }
 
+
+    public void exitAccount(View v){
+        usersAccount = null;
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+
+    private void setUI(){
+
+        try {
+            account_foto = findViewById(R.id.account_foto);
+
+            account_add_foto = findViewById(R.id.account_add_foto);
+            main_ava = findViewById(R.id.main_ava);
+
+            name = findViewById(R.id.user_name);
+            status = findViewById(R.id.user_state);
+            mail = findViewById(R.id.user_mail);
+            gender = findViewById(R.id.user_gender);
+            dateOfBirth = findViewById(R.id.user_dateOfBirth);
+            phone = findViewById(R.id.user_phoneNamber);
+        }catch (Exception e) {Toast.makeText(this, "Ошибка аккаунта_2", Toast.LENGTH_SHORT).show();}
+    }
+
     private void setInfoIfExist(){
 
         setMainInfo();
-
         setAdditionalInfo();
 
     }
-
     private void setMainInfo(){
         name.setText(usersAccount.getUserName());
         mail.setText(usersAccount.getUserEmail());
     }
-
     private void setAdditionalInfo(){
 
         try {
@@ -115,22 +137,11 @@ public class MyAccount extends AppCompatActivity {
         }catch (Exception e) {Toast.makeText(this, "Ошибка аккаунта_1", Toast.LENGTH_SHORT).show();}
     }
 
-    private void setUI(){
 
-        try {
-            account_foto = findViewById(R.id.account_foto);
 
-            account_add_foto = findViewById(R.id.account_add_foto);
-            main_ava = findViewById(R.id.main_ava);
 
-            name = findViewById(R.id.user_name);
-            status = findViewById(R.id.user_state);
-            mail = findViewById(R.id.user_mail);
-            gender = findViewById(R.id.user_gender);
-            dateOfBirth = findViewById(R.id.user_dateOfBirth);
-            phone = findViewById(R.id.user_phoneNamber);
-        }catch (Exception e) {Toast.makeText(this, "Ошибка аккаунта_2", Toast.LENGTH_SHORT).show();}
-    }
+
+
 
     public void goBasket(View v){
         try {

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,10 +21,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.food.Help.CollectionCloud;
+import com.example.food.Help.SaveUsersAccount;
 import com.example.food.adapter.LastDishAdapter;
 import com.example.food.adapter.LastStatesAdapter;
 import com.example.food.model.DishModel;
 import com.example.food.model.StatesModel;
+import com.example.food.profile.SingIn;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -59,6 +62,22 @@ public class Global extends AppCompatActivity {
             setStatesList();
             setApplicationRecycle2(statesList);
         }catch (Exception e){Toast.makeText(this, "Error: full states", Toast.LENGTH_SHORT).show();}
+
+        setAvaIfHaveAccount();
+    }
+
+    public void goToAva(View v){
+        try {
+            Intent intent = new Intent(this, SingIn.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void setAvaIfHaveAccount(){
+        if(SaveUsersAccount.usersAccount != null) {
+            ImageView main_ava = findViewById(R.id.main_ava);
+            main_ava.setImageURI(SaveUsersAccount.usersAccount.getUserPhoto());
+        }
     }
 
     private void setLastDishList(){

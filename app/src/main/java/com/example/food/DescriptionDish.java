@@ -23,7 +23,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.food.Help.CollectionCloud;
+import com.example.food.Help.SaveUsersAccount;
 import com.example.food.model.DishModel;
+import com.example.food.profile.IfNotAccount;
+import com.example.food.profile.SingIn;
 
 import java.util.Set;
 @SuppressLint("UseCompatLoadingForDrawables")
@@ -61,22 +64,53 @@ public class DescriptionDish extends AppCompatActivity {
 
             findUI();
             setUI();
+            setAvaIfHaveAccount();
 
         }catch (Exception e){
             Toast.makeText(this, "Error: full Description Dish", Toast.LENGTH_SHORT).show();
         }
     }
 
+    public void goToAva(View v){
+        try {
+            Intent intent = new Intent(this, SingIn.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+
+    private void setAvaIfHaveAccount(){
+        if(SaveUsersAccount.usersAccount != null) {
+            ImageView main_ava = findViewById(R.id.main_ava);
+            main_ava.setImageURI(SaveUsersAccount.usersAccount.getUserPhoto());
+        }
+    }
+
+    private boolean ifNotAccount(String line){
+        if(SaveUsersAccount.usersAccount == null){
+            Intent intent = new Intent(this, IfNotAccount.class);
+            intent.putExtra("activity", line);
+            startActivity(intent);
+            finish();
+            return false;
+        }
+        return true;
+    }
+
     @SuppressLint("UseCompatLoadingForDrawables")
     public void inLove(View v){
-        int x = 0;
-        try {
-            if(dishModel.getFlagOnLove() == 0){
-                isInLove(v, x);
-            }else if(dishModel.getFlagOnLove() == 1){
-                isNotInLove(v, x);
-            }
-        }catch (Exception e){Toast.makeText(context, "Error: full 'in live'", Toast.LENGTH_SHORT).show();}
+
+        if(ifNotAccount("Избранное доступно")){
+
+            int x = 0;
+            try {
+                if(dishModel.getFlagOnLove() == 0){
+                    isInLove(v, x);
+                }else if(dishModel.getFlagOnLove() == 1){
+                    isNotInLove(v, x);
+                }
+            }catch (Exception e){Toast.makeText(context, "Error: full 'in live'", Toast.LENGTH_SHORT).show();}
+        }
+
 
     }
 
@@ -109,6 +143,7 @@ public class DescriptionDish extends AppCompatActivity {
     public void goBasket(View v){
         try {
             Intent intent = new Intent(context, Basket.class);
+            intent.putExtra("activity", "Корзина доступна");
             startActivity(intent);
         }catch (Exception e){Toast.makeText(context, "no intent", Toast.LENGTH_SHORT).show();}
     }
@@ -137,7 +172,8 @@ public class DescriptionDish extends AppCompatActivity {
     }
 
     public void inBasket(View v){
-        CollectionCloud.BasketList.add(dishModel.getNameDish());
+        if(ifNotAccount("Корзина доступна"))
+            CollectionCloud.BasketList.add(dishModel.getNameDish());
     }
 
     private Spanned getShortenedText(String text, int maxLines) {

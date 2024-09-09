@@ -17,15 +17,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <androidx.cardview.widget.CardView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            app:cardCornerRadius="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/avatarka" />
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/main_ava"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:contentDescription="@string/app_name"
+                android:onClick="goToAva"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/avatarka" />
+        </androidx.cardview.widget.CardView>
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -156,39 +171,57 @@
                 android:layout_marginTop="20dp"
                 android:onClick="goSingIn">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:background="@drawable/avatarka"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@android:color/transparent"
+                    app:cardCornerRadius="33dp"
+                    android:layout_marginStart="17dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints">
+
+                    <ImageView
+                        android:id="@+id/setting_ava"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/avatarka"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.cardview.widget.CardView>
+
 
                 <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/setting_main_text"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="90dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginStart="90dp"
+                    android:layout_marginEnd="50dp"
                     android:fontFamily="@font/inter_extralight"
                     android:text="@string/text_1"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
+                    android:id="@+id/setting_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="90dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="0dp"
                     android:fontFamily="@font/inter_extralight"
                     android:text=""
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/setting_main_text" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

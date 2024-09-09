@@ -1,14 +1,11 @@
-package com.example.food;
+package com.example.food.profile;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,62 +14,56 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.food.Help.CollectionCloud;
+import com.example.food.Basket;
+import com.example.food.Global;
 import com.example.food.Help.SaveUsersAccount;
-import com.example.food.profile.IfNotAccount;
-import com.example.food.profile.SingIn;
+import com.example.food.MainActivity;
+import com.example.food.R;
+import com.example.food.Season;
+import com.example.food.Setting;
 
-public class Basket extends AppCompatActivity {
+public class IfNotAccount extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_basket);
+        setContentView(R.layout.activity_if_not_account);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        getWindow().setNavigationBarColor(Color.parseColor("#37383B"));
-        try {
+        setActivityText();
 
-            ifNotAccount();
-
-            ListView basketList = findViewById(R.id.basketList);
-            basketList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                    CollectionCloud.BasketList.toArray()));
-
-            setAvaIfHaveAccount();
-
-        }catch (Exception e){Toast.makeText(this, "Error: full basket", Toast.LENGTH_SHORT).show();}
     }
 
-    private void ifNotAccount(){
-        if(SaveUsersAccount.usersAccount == null){
-            Intent intent = new Intent(this, IfNotAccount.class);
-            intent.putExtra("activity", "Карзина доступна");
-            startActivity(intent);
-            finish();
-        }
+    @SuppressLint("SetTextI18n")
+    private void setActivityText(){
+        TextView textView = findViewById(R.id.activityText);
+
+        String text = getIntent().getStringExtra("activity");
+        String beforeText = textView.getText().toString();
+
+        textView.setText(text + beforeText);
     }
 
-    public void goToAva(View v){
+    public void goToSingIn(View v){
         try {
             Intent intent = new Intent(this, SingIn.class);
             startActivity(intent);
+        }catch (Exception e){
+            Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+
+    public void goBasket(View v){
+        try {
+            Intent intent = new Intent(this, Basket.class);
+            intent.putExtra("activity", "Корзина доступна");
+            startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
-
-    private void setAvaIfHaveAccount(){
-        if(SaveUsersAccount.usersAccount != null) {
-            ImageView main_ava = findViewById(R.id.main_ava);
-            main_ava.setImageURI(SaveUsersAccount.usersAccount.getUserPhoto());
-        }
-    }
-
-    public void goBasket(View v){}
     public void goGlobal(View v){
         try {
             Intent intent = new Intent(this, Global.class);
@@ -84,19 +75,17 @@ public class Basket extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }public void goSetting(View v){
+    }
+    public void goSetting(View v){
         try {
             Intent intent = new Intent(this, Setting.class);
             startActivity(intent);
-            finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }public void goSeson(View v){
+    }
+    public void goSeson(View v){
         try {
             Intent intent = new Intent(this, Season.class);
             startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
-
-
-    
 }
