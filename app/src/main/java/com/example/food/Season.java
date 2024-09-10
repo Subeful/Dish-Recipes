@@ -93,21 +93,18 @@ public class Season extends AppCompatActivity {
         try {
             Intent intent = new Intent(this, Global.class);
             startActivity(intent);
-            finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
     public void goSearch(View v){
         try {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-            finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }
     public void goSetting(View v){
         try {
             Intent intent = new Intent(this, Setting.class);
             startActivity(intent);
-            finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }public void goSeson(View v){}
     public void update(View v){

@@ -131,6 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
+                        android:onClick="goLastSight"
                         android:background="@android:color/transparent"
                         android:contentDescription="@string/app_name"
                         android:src="@drawable/time_ago" />
@@ -220,6 +221,25 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lastsDishRecycle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView512"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="15sp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Просмотренные"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lastSightDishRecycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp">

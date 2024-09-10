@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Food"
         tools:targetApi="31">
         <activity
+            android:name=".LastSightDish"
+            android:exported="false" />
+        <activity
+            android:name=".profile.EditDataFromAccount"
+            android:exported="false" />
+        <activity
             android:name=".profile.IfNotAccount"
             android:exported="false" />
         <activity

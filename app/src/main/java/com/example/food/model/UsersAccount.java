@@ -86,6 +86,16 @@ public class UsersAccount {
     }
 
     public enum Gender{
-        Male, Female;
+        Male("Муж"), Female("Жен");
+        String pol;
+
+        Gender(String pol) {
+            this.pol = pol;
+        }
+
+        @Override
+        public String toString() {
+            return pol;
+        }
     }
 }

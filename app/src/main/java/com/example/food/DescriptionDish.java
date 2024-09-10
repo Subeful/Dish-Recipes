@@ -66,9 +66,18 @@ public class DescriptionDish extends AppCompatActivity {
             setUI();
             setAvaIfHaveAccount();
 
+            addThisDishInLastSightList();
+
         }catch (Exception e){
             Toast.makeText(this, "Error: full Description Dish", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void addThisDishInLastSightList(){
+        if(CollectionCloud.lastSeeDishList.isEmpty())
+            CollectionCloud.lastSeeDishList.addLast(dishModel);
+        else if(!CollectionCloud.lastSeeDishList.getLast().getNameDish().equals(dishModel.getNameDish()))
+            CollectionCloud.lastSeeDishList.addLast(dishModel);
     }
 
     public void goToAva(View v){
@@ -162,7 +171,6 @@ public class DescriptionDish extends AppCompatActivity {
         try {
             Intent intent = new Intent(this, Setting.class);
             startActivity(intent);
-            finish();
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }public void goSeson(View v){
         try {

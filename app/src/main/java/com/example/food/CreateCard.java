@@ -222,7 +222,7 @@ public class CreateCard extends AppCompatActivity {
                     default:;
                 }
 
-                Toast.makeText(this, "Рецепт добавлен в категорию", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Рецепт сохранён", Toast.LENGTH_SHORT).show();
 
             } else Toast.makeText(this, "Такое блюдо уже есть", Toast.LENGTH_SHORT).show();
         }
@@ -239,7 +239,6 @@ public class CreateCard extends AppCompatActivity {
         if(flagMyRecipe == 0){
             CollectionCloud.commonDishList.add(dishModel);
             CollectionCloud.myRecipeList.add(dishModel);
-            Toast.makeText(this, "Рецепт добавлен в общее", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -486,7 +485,6 @@ public class CreateCard extends AppCompatActivity {
         try {
             Intent intent = new Intent(this, Setting.class);
             startActivity(intent);
-            finish();
         } catch (Exception e) {
             Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();
         }

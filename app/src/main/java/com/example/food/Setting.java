@@ -45,21 +45,12 @@ public class Setting extends AppCompatActivity {
 
     private void setDataIfHaveAccount() {
         if (usersAccount != null) {
-
             setAvaOfUsers();
             setInfoOfAccount();
         }
     }
 
-    public void goToAva(View v){
-        try {
-            Intent intent = new Intent(this, SingIn.class);
-            startActivity(intent);
-        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
-    }
-
     private void setInfoOfAccount(){
-
         TextView mainText = findViewById(R.id.setting_main_text);
         TextView profileText = findViewById(R.id.setting_profile);
 
@@ -71,7 +62,6 @@ public class Setting extends AppCompatActivity {
     }
 
     private void setAvaOfUsers () {
-
         ImageView main_ava = findViewById(R.id.main_ava);
         ImageView setting_ava = findViewById(R.id.setting_ava);
 
@@ -82,6 +72,13 @@ public class Setting extends AppCompatActivity {
 
 
 
+
+    public void goToAva(View v){
+        try {
+            Intent intent = new Intent(this, SingIn.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
 
     public void goBasket(View v){
         try {
@@ -128,6 +125,12 @@ public class Setting extends AppCompatActivity {
     public void goSingIn(View v){
         try {
             Intent intent = new Intent(this, SingIn.class);
+            startActivity(intent);
+        }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
+    }
+    public void goLastSee(View v){
+        try {
+            Intent intent = new Intent(this, LastSightDish.class);
             startActivity(intent);
         }catch (Exception e){Toast.makeText(this, "no intent", Toast.LENGTH_SHORT).show();}
     }

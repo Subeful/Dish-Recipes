@@ -35,14 +35,5 @@ public class CollectionCloud{
 
     public static LinkedList<DishModel> lastSeeDishList = new LinkedList<>();
 
-    public static void setIfNotExist(LinkedList<DishModel> list, DishModel dishModel){
-        for(DishModel model: list){
-            if(!(model.getNameDish().equals(dishModel.getNameDish()))) {
-                list.addLast(dishModel);
-                break;
-            }
-        }
-    }
-
 }
 
